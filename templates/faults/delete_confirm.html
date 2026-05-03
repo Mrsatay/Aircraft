@@ -1,0 +1,21 @@
+{% extends "base_app.html" %}
+{% block title %}Delete Fault | Aircraft Test Fault Management System{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Delete Fault</h1>
+</div>
+<div class="card shadow-sm border-danger-subtle">
+    <div class="card-body">
+        <div class="alert alert-danger">
+            <strong>Warning:</strong> This action will permanently remove the fault record and its workflow history.
+        </div>
+        <p class="mb-1">You are about to delete:</p>
+        <p class="fw-semibold mb-4">#{{ fault.pk }} - {{ fault.title }}</p>
+        <form method="post" class="d-flex gap-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="{% url 'faults:detail' fault.pk %}" class="btn btn-outline-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

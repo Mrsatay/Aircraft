@@ -1,0 +1,223 @@
+{% extends "base_app.html" %}
+{% block title %}Fault Detail | Aircraft Test Fault Management System{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Fault Detail</h1>
+    <div class="d-flex gap-2">
+        <a href="{% url 'faults:edit' fault.pk %}" class="btn btn-outline-warning"><i class="bi bi-pencil me-1"></i>Edit</a>
+        <a href="{% url 'faults:delete' fault.pk %}" class="btn btn-outline-danger"><i class="bi bi-trash me-1"></i>Delete</a>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                        <h3>{{ fault.title }}</h3>
+                        <p class="text-muted mb-0">Aircraft {{ fault.aircraft.tail_number }} &bull; {{ fault.aircraft.model }}</p>
+                    </div>
+                    <span class="badge bg-{% if fault.severity == 'Critical' %}danger{% elif fault.severity == 'Major' %}warning{% else %}info{% endif %}">
+                        {{ fault.severity }}
+                    </span>
+                </div>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4"><div class="text-muted small">Status</div><div class="fw-semibold">{{ fault.current_status }}</div></div>
+                    <div class="col-md-4"><div class="text-muted small">Subsystem</div><div class="fw-semibold">{{ fault.subsystem }}</div></div>
+                    <div class="col-md-4"><div class="text-muted small">Flight Phase</div><div class="fw-semibold">{{ fault.flight_phase|default:'-' }}</div></div>
+                    <div class="col-md-4"><div class="text-muted small">Reported By</div><div class="fw-semibold">{% if fault.reported_by %}{{ fault.reported_by.get_full_name|default:fault.reported_by.username }}{% else %}-{% endif %}</div></div>
+                    <div class="col-md-4"><div class="text-muted small">Assigned To</div><div class="fw-semibold">{% if fault.assigned_to %}{{ fault.assigned_to.get_full_name|default:fault.assigned_to.username }}{% else %}Unassigned{% endif %}</div></div>
+                    <div class="col-md-4"><div class="text-muted small">Reported Date</div><div class="fw-semibold">{{ fault.reported_date|date:"d M Y H:i" }}</div></div>
+                </div>
+                <div class="mb-3"><div class="text-muted small mb-1">Description</div><div>{{ fault.description|linebreaks }}</div></div>
+                <div class="row g-3">
+                    <div class="col-md-6"><div class="text-muted small mb-1">Component Affected</div><div>{{ fault.component_affected|default:'-' }}</div></div>
+                    <div class="col-md-6"><div class="text-muted small mb-1">Environmental Conditions</div><div>{{ fault.environmental_conditions|default:'-' }}</div></div>
+                    <div class="col-12"><div class="text-muted small mb-1">Analysis Findings</div><div>{{ fault.analysis_findings|default:'-'|linebreaks }}</div></div>
+                    <div class="col-12"><div class="text-muted small mb-1">Root Cause</div><div>{{ fault.root_cause|default:'-'|linebreaks }}</div></div>
+                    <div class="col-12"><div class="text-muted small mb-1">Resolution Action</div><div>{{ fault.resolution_action|default:'-'|linebreaks }}</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow">
+            <div class="card-body">
+                <h5 class="mb-3">Status History</h5>
+                {% if status_history %}
+                    <div class="timeline-list">
+                        {% for item in status_history %}
+                            <div class="border-start border-3 ps-3 mb-3">
+                                <div class="fw-semibold">{{ item.old_status|default:"Created" }} &rarr; {{ item.new_status }}</div>
+                                <div class="small text-muted">
+                                    {{ item.change_timestamp|date:"d M Y H:i" }}
+                                    {% if item.changed_by %}&bull; {{ item.changed_by.get_full_name|default:item.changed_by.username }}{% endif %}
+                                </div>
+                                {% if item.change_notes %}<div class="mt-1">{{ item.change_notes }}</div>{% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted mb-0">No status change history is available for this fault yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card bg-light border-0 shadow-sm mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">Explain Fault With AI</h5>
+                    <button class="btn btn-dark btn-sm" type="button" id="explain-fault-btn" data-url="{% url 'ai_tools:explain_fault' fault.pk %}">
+                        Explain Now
+                    </button>
+                </div>
+                <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                    <span id="ai-source-badge" class="badge bg-secondary">Source Unknown</span>
+                    <span id="ai-model-badge" class="badge bg-light text-dark border d-none"></span>
+                </div>
+                <div id="ai-warning" class="alert alert-warning py-2 px-3 small d-none"></div>
+                <textarea class="form-control mb-2" id="ai-explanation-text" rows="10" readonly>{{ fault.ai_explanation }}</textarea>
+                <div id="ai-source-note" class="small text-muted">
+                    Click <strong>Explain Now</strong> to verify whether the result comes from OpenRouter AI or the local fallback template.
+                </div>
+            </div>
+        </div>
+
+        {% if can_update_status %}
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h6 class="mb-3">Workflow Update</h6>
+                <div class="alert alert-info py-2 px-3 small mb-3" role="alert">
+                    <strong>Workflow rule:</strong>
+                    {% if fault.current_status == "New" %}
+                        This fault is newly reported. Assign it to an engineer to start the workflow.
+                    {% elif fault.current_status == "Assigned" %}
+                        Moving to <strong>Under Analysis</strong> requires Analysis Findings.
+                    {% elif fault.current_status == "Under Analysis" %}
+                        Moving to <strong>Root Cause Identified</strong> requires Root Cause.
+                    {% elif fault.current_status == "Fix In Progress" %}
+                        Corrective action is being implemented. Move to <strong>Resolved</strong> after the fix has been applied.
+                    {% elif fault.current_status == "Resolved" %}
+                        The fix has been applied. Admin or Test Manager can verify and close this fault.
+                    {% elif fault.current_status == "Verified Closed" %}
+                        This fault has been verified and officially closed. No further workflow action is required.
+                    {% else %}
+                        Select the next valid status and add notes for traceability.
+                    {% endif %}
+                </div>
+                <form method="post" action="{% url 'faults:status_update' fault.pk %}" class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-12">
+                        <label class="form-label" for="new_status">Next Status</label>
+                        <select class="form-select" id="new_status" name="new_status">
+                            {% for status in allowed_statuses %}
+                                <option value="{{ status }}" {% if status == fault.current_status %}selected{% endif %}>{{ status }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="assigned_to">Assigned To</label>
+                        <select class="form-select" id="assigned_to" name="assigned_to">
+                            <option value="">Unassigned</option>
+                            {% for user in assignable_users %}
+                                <option value="{{ user.pk }}" {% if fault.assigned_to_id == user.pk %}selected{% endif %}>
+                                    {{ user.get_full_name|default:user.username }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="analysis_findings">Analysis Findings</label>
+                        <div class="form-text mb-1">Required when the next status is Under Analysis.</div>
+                        <textarea class="form-control" id="analysis_findings" name="analysis_findings" rows="3">{{ fault.analysis_findings }}</textarea>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="root_cause">Root Cause</label>
+                        <div class="form-text mb-1">Required when the next status is Root Cause Identified.</div>
+                        <textarea class="form-control" id="root_cause" name="root_cause" rows="3">{{ fault.root_cause }}</textarea>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="resolution_action">Resolution Action</label>
+                        <textarea class="form-control" id="resolution_action" name="resolution_action" rows="3">{{ fault.resolution_action }}</textarea>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="status_notes">Status Notes</label>
+                        <textarea class="form-control" id="status_notes" name="status_notes" rows="3" placeholder="What changed in this step?"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100" type="submit">Save Workflow Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6 class="mb-3">Operational Summary</h6>
+                <div class="small text-muted mb-1">Severity Score</div><div class="mb-3">{{ fault.severity_score|default:'-' }}</div>
+                <div class="small text-muted mb-1">Resolution Time Hours</div><div class="mb-3">{{ fault.resolution_time_hours|default:'-' }}</div>
+                <div class="small text-muted mb-1">Closed Date</div><div>{{ fault.closed_date|date:"d M Y H:i"|default:'-' }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+document.getElementById('explain-fault-btn')?.addEventListener('click', async function () {
+    const button = this;
+    const output = document.getElementById('ai-explanation-text');
+    const warning = document.getElementById('ai-warning');
+    const sourceBadge = document.getElementById('ai-source-badge');
+    const modelBadge = document.getElementById('ai-model-badge');
+    const sourceNote = document.getElementById('ai-source-note');
+    button.disabled = true;
+    button.textContent = 'Generating...';
+    warning.classList.add('d-none');
+    warning.textContent = '';
+    sourceBadge.className = 'badge bg-secondary';
+    sourceBadge.textContent = 'Checking Source...';
+    modelBadge.classList.add('d-none');
+    modelBadge.textContent = '';
+
+    try {
+        const response = await fetch(button.dataset.url, {
+            method: 'POST',
+            headers: { 'X-CSRFToken': '{{ csrf_token }}' },
+        });
+        const data = await response.json();
+        if (!response.ok || !data.success) {
+            throw new Error(data.error || 'AI explanation request failed.');
+        }
+        output.value = data.explanation || '';
+        if (data.modelUsed) {
+            sourceBadge.className = 'badge bg-success';
+            sourceBadge.textContent = 'AI Generated';
+            modelBadge.textContent = data.modelUsed;
+            modelBadge.classList.remove('d-none');
+            sourceNote.textContent = 'This explanation was generated by the configured LLM provider.';
+        } else {
+            sourceBadge.className = 'badge bg-warning text-dark';
+            sourceBadge.textContent = 'Fallback Template';
+            sourceNote.textContent = 'This explanation was generated by the local fallback template, not by the LLM.';
+        }
+        if (data.warning) {
+            warning.textContent = data.warning;
+            warning.classList.remove('d-none');
+        }
+    } catch (error) {
+        sourceBadge.className = 'badge bg-danger';
+        sourceBadge.textContent = 'Request Failed';
+        sourceNote.textContent = 'The explanation request failed before a result source could be confirmed.';
+        warning.textContent = error.message;
+        warning.classList.remove('d-none');
+    } finally {
+        button.disabled = false;
+        button.textContent = 'Explain Now';
+    }
+});
+</script>
+{% endblock %}

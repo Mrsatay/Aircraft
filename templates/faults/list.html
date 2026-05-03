@@ -1,0 +1,209 @@
+{% extends "base_app.html" %}
+{% block title %}Fault List | Aircraft Test Fault Management System{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Fault List</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <a href="{% url 'faults:create' %}" class="btn btn-sm btn-primary">
+            <i class="bi bi-plus-circle me-1"></i>Create Fault
+        </a>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card stats-card border-primary">
+            <div class="card-body text-center">
+                <h5 class="card-title text-primary">Total Faults</h5>
+                <h2 class="display-4">{{ total_faults }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stats-card border-warning">
+            <div class="card-body text-center">
+                <h5 class="card-title text-warning">Active</h5>
+                <h2 class="display-4">{{ active_faults }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stats-card border-info">
+            <div class="card-body text-center">
+                <h5 class="card-title text-info">Under Maintenance</h5>
+                <h2 class="display-4">{{ under_maintenance }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card stats-card border-success">
+            <div class="card-body text-center">
+                <h5 class="card-title text-success">Open</h5>
+                <h2 class="display-4">{{ open_faults }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="alert alert-info d-flex align-items-start gap-2 py-2 px-3 small mb-3" role="alert">
+            <i class="bi bi-info-circle mt-1"></i>
+            <div>
+                Use <strong>Sort By</strong> to change the fault order. Filters, sorting, and pagination can be combined.
+            </div>
+        </div>
+        <form class="row g-3" method="get">
+            <div class="col-md-3">
+                <label class="form-label">Status</label>
+                <select class="form-select" name="status">
+                    <option value="">All Status</option>
+                    {% for option in status_options %}
+                        <option value="{{ option }}" {% if selected_status == option %}selected{% endif %}>{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Severity</label>
+                <select class="form-select" name="severity">
+                    <option value="">All Severity</option>
+                    {% for option in severity_options %}
+                        <option value="{{ option }}" {% if selected_severity == option %}selected{% endif %}>{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Aircraft</label>
+                <select class="form-select" name="aircraft">
+                    <option value="">All Aircraft</option>
+                    {% for item in aircraft_list %}
+                        <option value="{{ item.id }}" {% if selected_aircraft == item.id|stringformat:'s' %}selected{% endif %}>
+                            {{ item.tail_number }} - {{ item.model }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Search</label>
+                <input type="text" class="form-control" placeholder="Search title..." name="search" value="{{ search }}">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Sort By</label>
+                <select class="form-select" name="sort">
+                    {% for value, label in sort_options.items %}
+                        <option value="{{ value }}" {% if sort == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-outline-primary"><i class="bi bi-funnel me-1"></i>Apply Filters</button>
+                <a href="{% url 'faults:list' %}" class="btn btn-outline-secondary"><i class="bi bi-x-circle me-1"></i>Clear</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <div class="text-muted small">
+                Showing {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ paginator.count }} faults
+            </div>
+            <div class="text-muted small">
+                Sorted by <strong>{{ selected_sort_label }}</strong> &bull; Page {{ page_obj.number }} of {{ paginator.num_pages }}
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Aircraft</th>
+                        <th>Subsystem</th>
+                        <th>Severity</th>
+                        <th>Status</th>
+                        <th>Reported Date</th>
+                        <th>Assigned To</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fault in faults %}
+                    <tr>
+                        <td><span class="badge bg-secondary">{{ fault.pk }}</span></td>
+                        <td>
+                            <a href="{% url 'faults:detail' fault.pk %}" class="text-decoration-none fw-bold">{{ fault.title }}</a>
+                        </td>
+                        <td>{{ fault.aircraft.tail_number }}</td>
+                        <td>{{ fault.subsystem }}</td>
+                        <td>
+                            <span class="badge bg-{% if fault.severity == 'Critical' %}danger{% elif fault.severity == 'Major' %}warning{% else %}info{% endif %}">
+                                {{ fault.severity }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-{% if fault.current_status == 'Resolved' or fault.current_status == 'Verified Closed' %}success{% elif fault.current_status == 'Assigned' %}primary{% elif fault.current_status == 'New' %}secondary{% else %}warning{% endif %}">
+                                {{ fault.current_status }}
+                            </span>
+                        </td>
+                        <td>{{ fault.reported_date|date:"M d, Y H:i" }}</td>
+                        <td>
+                            {% if fault.assigned_to %}
+                                {{ fault.assigned_to.get_full_name|default:fault.assigned_to.username }}
+                            {% else %}
+                                <span class="text-muted">Unassigned</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="{% url 'faults:detail' fault.pk %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+                                <a href="{% url 'faults:edit' fault.pk %}" class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></a>
+                                <a href="{% url 'faults:delete' fault.pk %}" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="9" class="text-center text-muted py-4">No faults found matching your criteria.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if page_obj.has_other_pages %}
+        <nav class="d-flex justify-content-center mt-3" aria-label="Fault list pagination">
+            <ul class="pagination mb-0">
+                <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                    {% if page_obj.has_previous %}
+                        <a class="page-link" href="?{% if pagination_query %}{{ pagination_query }}&{% endif %}page={{ page_obj.previous_page_number }}">Previous</a>
+                    {% else %}
+                        <span class="page-link">Previous</span>
+                    {% endif %}
+                </li>
+
+                {% for page_number in paginator.page_range %}
+                    {% if page_number == page_obj.number %}
+                        <li class="page-item active" aria-current="page"><span class="page-link">{{ page_number }}</span></li>
+                    {% elif page_number >= page_obj.number|add:"-2" and page_number <= page_obj.number|add:"2" %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if pagination_query %}{{ pagination_query }}&{% endif %}page={{ page_number }}">{{ page_number }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                    {% if page_obj.has_next %}
+                        <a class="page-link" href="?{% if pagination_query %}{{ pagination_query }}&{% endif %}page={{ page_obj.next_page_number }}">Next</a>
+                    {% else %}
+                        <span class="page-link">Next</span>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

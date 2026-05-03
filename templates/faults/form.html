@@ -1,0 +1,246 @@
+{% extends "base_app.html" %}
+{% block title %}{{ page_title }} | Aircraft Test Fault Management System{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom gap-2">
+    <h1 class="h2 mb-0">{{ page_title }}</h1>
+    <a href="{% if fault %}{% url 'faults:detail' fault.pk %}{% else %}{% url 'faults:list' %}{% endif %}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>Back
+    </a>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">
+            <i class="bi bi-{% if fault %}pencil-square{% else %}plus-circle{% endif %} me-2"></i>
+            {% if fault %}Fault Workflow Form{% else %}New Fault Report{% endif %}
+        </h5>
+    </div>
+    <div class="card-body">
+        <form method="post" class="row g-4" id="fault-form">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+            <div class="col-12">
+                <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+            </div>
+            {% endif %}
+
+            <div class="col-12">
+                <h6 class="text-primary"><i class="bi bi-info-circle me-2"></i>Basic Information</h6>
+                <hr>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="{{ form.title.id_for_label }}">Fault Title *</label>
+                {{ form.title }}
+                {% if form.title.errors %}<div class="text-danger small mt-1">{{ form.title.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="{{ form.aircraft.id_for_label }}">Aircraft *</label>
+                {{ form.aircraft }}
+                {% if form.aircraft.errors %}<div class="text-danger small mt-1">{{ form.aircraft.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-12">
+                <label class="form-label mb-1" for="{{ form.description.id_for_label }}">
+                    Description *
+                    <small class="text-muted">(Auto-generate with AI)</small>
+                </label>
+                {{ form.description }}
+                <div class="mt-2">
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary btn-sm"
+                        id="generate-description-btn"
+                        data-url="{% url 'ai_tools:generate_description' %}"
+                    >
+                        <i class="bi bi-magic me-1"></i>Generate With AI
+                    </button>
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-2 flex-wrap">
+                    <span id="description-source-badge" class="badge bg-secondary">Source Unknown</span>
+                    <span id="description-model-badge" class="badge bg-light text-dark border d-none"></span>
+                </div>
+                <div id="description-warning" class="form-text text-warning"></div>
+                <div id="description-source-note" class="form-text text-muted">
+                    Use the button above to see whether the result comes from OpenRouter AI or the local fallback template.
+                </div>
+                {% if form.description.errors %}<div class="text-danger small mt-1">{{ form.description.errors|striptags }}</div>{% endif %}
+            </div>
+
+            <div class="col-12">
+                <h6 class="text-primary"><i class="bi bi-gear me-2"></i>Technical Details</h6>
+                <hr>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="{{ form.subsystem.id_for_label }}">Subsystem *</label>
+                {{ form.subsystem }}
+                {% if form.subsystem.errors %}<div class="text-danger small mt-1">{{ form.subsystem.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="{{ form.severity.id_for_label }}">Severity *</label>
+                {{ form.severity }}
+                {% if form.severity.errors %}<div class="text-danger small mt-1">{{ form.severity.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="{{ form.component_affected.id_for_label }}">Component Affected</label>
+                {{ form.component_affected }}
+                {% if form.component_affected.errors %}<div class="text-danger small mt-1">{{ form.component_affected.errors|striptags }}</div>{% endif %}
+            </div>
+
+            <div class="col-12">
+                <h6 class="text-primary"><i class="bi bi-cloud me-2"></i>Test Conditions</h6>
+                <hr>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="{{ form.flight_phase.id_for_label }}">Flight Phase</label>
+                {{ form.flight_phase }}
+                {% if form.flight_phase.errors %}<div class="text-danger small mt-1">{{ form.flight_phase.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="{{ form.environmental_conditions.id_for_label }}">Environmental Conditions</label>
+                {{ form.environmental_conditions }}
+                {% if form.environmental_conditions.errors %}<div class="text-danger small mt-1">{{ form.environmental_conditions.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="{{ form.severity_score.id_for_label }}">Severity Score (1-10)</label>
+                {{ form.severity_score }}
+                {% if form.severity_score.errors %}<div class="text-danger small mt-1">{{ form.severity_score.errors|striptags }}</div>{% endif %}
+            </div>
+
+            <div class="col-12">
+                <h6 class="text-primary"><i class="bi bi-person-check me-2"></i>Assignment</h6>
+                <hr>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="{{ form.assigned_to.id_for_label }}">Assign To</label>
+                {{ form.assigned_to }}
+                {% if form.assigned_to.errors %}<div class="text-danger small mt-1">{{ form.assigned_to.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="{{ form.current_status.id_for_label }}">Current Status</label>
+                {{ form.current_status }}
+                {% if form.current_status.errors %}<div class="text-danger small mt-1">{{ form.current_status.errors|striptags }}</div>{% endif %}
+            </div>
+
+            {% if fault %}
+            <div class="col-12">
+                <h6 class="text-primary"><i class="bi bi-tools me-2"></i>Workflow Details</h6>
+                <hr>
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="{{ form.analysis_findings.id_for_label }}">Analysis Findings</label>
+                {{ form.analysis_findings }}
+                {% if form.analysis_findings.errors %}<div class="text-danger small mt-1">{{ form.analysis_findings.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="{{ form.root_cause.id_for_label }}">Root Cause</label>
+                {{ form.root_cause }}
+                {% if form.root_cause.errors %}<div class="text-danger small mt-1">{{ form.root_cause.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="{{ form.resolution_action.id_for_label }}">Resolution Action</label>
+                {{ form.resolution_action }}
+                {% if form.resolution_action.errors %}<div class="text-danger small mt-1">{{ form.resolution_action.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="{{ form.resolution_time_hours.id_for_label }}">Resolution Time Hours</label>
+                {{ form.resolution_time_hours }}
+                {% if form.resolution_time_hours.errors %}<div class="text-danger small mt-1">{{ form.resolution_time_hours.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="{{ form.ai_explanation.id_for_label }}">AI Explanation</label>
+                {{ form.ai_explanation }}
+                {% if form.ai_explanation.errors %}<div class="text-danger small mt-1">{{ form.ai_explanation.errors|striptags }}</div>{% endif %}
+            </div>
+            {% endif %}
+
+            <div class="col-12 d-flex justify-content-end gap-2 pt-2">
+                <a href="{% if fault %}{% url 'faults:detail' fault.pk %}{% else %}{% url 'faults:list' %}{% endif %}" class="btn btn-outline-secondary">
+                    <i class="bi bi-x-circle me-1"></i>Cancel
+                </a>
+                {% if not fault %}
+                <button type="reset" class="btn btn-outline-warning">
+                    <i class="bi bi-arrow-clockwise me-1"></i>Reset Form
+                </button>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-{% if fault %}pencil-square{% else %}plus-circle{% endif %} me-1"></i>{{ submit_label }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+const severityField = document.getElementById('id_severity');
+const severityScoreField = document.getElementById('id_severity_score');
+severityField?.addEventListener('change', () => {
+    if (!severityScoreField || severityScoreField.value) return;
+    if (severityField.value === 'Critical') severityScoreField.value = '9';
+    if (severityField.value === 'Major') severityScoreField.value = '6';
+    if (severityField.value === 'Minor') severityScoreField.value = '3';
+});
+
+document.getElementById('generate-description-btn')?.addEventListener('click', async function () {
+    const button = this;
+    const warning = document.getElementById('description-warning');
+    const sourceBadge = document.getElementById('description-source-badge');
+    const modelBadge = document.getElementById('description-model-badge');
+    const sourceNote = document.getElementById('description-source-note');
+    const aircraftSelect = document.getElementById('id_aircraft');
+    const severitySelect = document.getElementById('id_severity');
+    const phaseSelect = document.getElementById('id_flight_phase');
+    const subsystemInput = document.getElementById('id_subsystem');
+    const descriptionInput = document.getElementById('id_description');
+
+    warning.textContent = '';
+    sourceBadge.className = 'badge bg-secondary';
+    sourceBadge.textContent = 'Checking Source...';
+    modelBadge.classList.add('d-none');
+    modelBadge.textContent = '';
+    button.disabled = true;
+    button.innerHTML = '<span class="spinner-border spinner-border-sm me-1" role="status"></span>Generating...';
+
+    try {
+        const response = await fetch(button.dataset.url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+            body: JSON.stringify({
+                aircraft: aircraftSelect?.selectedOptions?.[0]?.text || '',
+                subsystem: subsystemInput?.value || '',
+                severity: severitySelect?.value || '',
+                flightPhase: phaseSelect?.value || '',
+            }),
+        });
+        const data = await response.json();
+        if (!response.ok || !data.success) {
+            throw new Error(data.error || 'Description generation failed.');
+        }
+        descriptionInput.value = data.description || '';
+        if (data.modelUsed) {
+            sourceBadge.className = 'badge bg-success';
+            sourceBadge.textContent = 'AI Generated';
+            modelBadge.textContent = data.modelUsed;
+            modelBadge.classList.remove('d-none');
+            sourceNote.textContent = 'This description was generated by the configured LLM provider.';
+        } else {
+            sourceBadge.className = 'badge bg-warning text-dark';
+            sourceBadge.textContent = 'Fallback Template';
+            sourceNote.textContent = 'This description was generated by the local fallback template, not by the LLM.';
+        }
+        warning.textContent = data.warning || '';
+    } catch (error) {
+        sourceBadge.className = 'badge bg-danger';
+        sourceBadge.textContent = 'Request Failed';
+        sourceNote.textContent = 'The description request failed before a result source could be confirmed.';
+        warning.textContent = error.message;
+    } finally {
+        button.disabled = false;
+        button.innerHTML = '<i class="bi bi-magic me-1"></i>Generate With AI';
+    }
+});
+</script>
+{% endblock %}

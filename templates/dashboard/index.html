@@ -1,0 +1,356 @@
+{% extends "base_app.html" %}
+{% block title %}Dashboard | Aircraft Test Fault Management System{% endblock %}
+
+{% block content %}
+<div class="dashboard-hero mb-4">
+    <div class="row align-items-center g-3">
+        <div class="col-lg-8">
+            <span class="dashboard-eyebrow">Operations Overview</span>
+            <h1 class="dashboard-title">Aircraft Fault Command Center</h1>
+            <p class="dashboard-subtitle mb-0">
+                Monitor backlog, closure performance, subsystem concentration, and high-risk faults from one operational view.
+            </p>
+        </div>
+        <div class="col-lg-4">
+            <div class="dashboard-hero-meta">
+                <div><strong>Last updated</strong></div>
+                <div>{{ now|date:"d M Y H:i:s" }}</div>
+                <button type="button" class="btn btn-light btn-sm mt-3" onclick="location.reload()">
+                    <i class="bi bi-arrow-clockwise me-1"></i>Refresh
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-xl-3 col-md-6">
+        <div class="card dashboard-kpi kpi-primary h-100">
+            <div class="card-body">
+                <div class="kpi-label">Total Fault Portfolio</div>
+                <div class="kpi-value">{{ total_faults }}</div>
+                <div class="kpi-meta">All logged fault records in the system</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card dashboard-kpi kpi-danger h-100">
+            <div class="card-body">
+                <div class="kpi-label">Open Fault Backlog</div>
+                <div class="kpi-value">{{ open_faults }}</div>
+                <div class="kpi-meta">{{ overdue_faults }} overdue more than 7 days</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card dashboard-kpi kpi-success h-100">
+            <div class="card-body">
+                <div class="kpi-label">Closure Rate</div>
+                <div class="kpi-value">{{ closure_rate }}%</div>
+                <div class="kpi-meta">{{ resolved_today }} faults resolved today</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="card dashboard-kpi kpi-warning h-100">
+            <div class="card-body">
+                <div class="kpi-label">Avg Resolution Time</div>
+                <div class="kpi-value">{{ avg_resolution_hours }}h</div>
+                <div class="kpi-meta">Average from report to closure</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-xl-8">
+        <div class="card shadow h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="m-0 font-weight-bold text-primary">Workflow Status Distribution</h6>
+                <span class="badge bg-light text-dark">Operational Mix</span>
+            </div>
+            <div class="card-body">
+                <div class="chart-container dashboard-chart-lg">
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card shadow h-100">
+            <div class="card-header">
+                <h6 class="m-0 font-weight-bold text-primary">Severity Exposure</h6>
+            </div>
+            <div class="card-body">
+                <div class="severity-band severity-critical-band">
+                    <div>
+                        <div class="severity-title">Critical</div>
+                        <div class="severity-note">Immediate operational attention</div>
+                    </div>
+                    <div class="severity-value">{{ critical_faults }}</div>
+                </div>
+                <div class="severity-band severity-major-band">
+                    <div>
+                        <div class="severity-title">Major</div>
+                        <div class="severity-note">Performance degradation risk</div>
+                    </div>
+                    <div class="severity-value">{{ major_faults }}</div>
+                </div>
+                <div class="severity-band severity-minor-band">
+                    <div>
+                        <div class="severity-title">Minor</div>
+                        <div class="severity-note">Lower impact but still tracked</div>
+                    </div>
+                    <div class="severity-value">{{ minor_faults }}</div>
+                </div>
+                <div class="chart-container dashboard-chart-sm mt-4">
+                    <canvas id="severityChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-xl-6">
+        <div class="card shadow h-100">
+            <div class="card-header">
+                <h6 class="m-0 font-weight-bold text-primary">Top Subsystem Contributors</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-container dashboard-chart-md">
+                    <canvas id="subsystemChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card shadow h-100">
+            <div class="card-header">
+                <h6 class="m-0 font-weight-bold text-primary">Flight Phase Distribution</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-container dashboard-chart-md">
+                    <canvas id="flightPhaseChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-xl-6">
+        <div class="card shadow h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="m-0 font-weight-bold text-primary">Aircraft Hotspots</h6>
+                <span class="badge bg-danger-subtle text-danger-emphasis">Priority View</span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Aircraft</th>
+                                <th>Total</th>
+                                <th>Open</th>
+                                <th>Critical</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in aircraft_hotspots %}
+                            <tr>
+                                <td><strong>{{ item.tail_number }}</strong></td>
+                                <td>{{ item.total_faults }}</td>
+                                <td>{{ item.open_faults }}</td>
+                                <td>{{ item.critical_faults }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-muted">No aircraft hotspots available.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card shadow h-100">
+            <div class="card-header">
+                <h6 class="m-0 font-weight-bold text-primary">Critical Watchlist</h6>
+            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    {% for fault in critical_watchlist %}
+                    <div class="list-group-item border-0 px-0">
+                        <div class="d-flex justify-content-between align-items-start gap-3">
+                            <div>
+                                <div class="fw-semibold">{{ fault.title }}</div>
+                                <div class="small text-muted">{{ fault.aircraft }} &bull; {{ fault.subsystem }}</div>
+                            </div>
+                            <span class="badge bg-{% if fault.severity == 'Critical' %}danger{% else %}warning{% endif %}">
+                                {{ fault.severity }}
+                            </span>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="text-muted">No critical or major open faults at the moment.</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-xl-6">
+        <div class="card shadow h-100">
+            <div class="card-header">
+                <h6 class="m-0 font-weight-bold text-primary">Oldest Open Faults</h6>
+            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    {% for fault in oldest_open_faults %}
+                    <div class="list-group-item border-0 px-0">
+                        <div class="fw-semibold">#{{ fault.pk }} - {{ fault.title }}</div>
+                        <div class="small text-muted">{{ fault.current_status }} &bull; {{ fault.age_days }} days open</div>
+                    </div>
+                    {% empty %}
+                    <div class="text-muted">No open faults at the moment.</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card shadow h-100">
+            <div class="card-header">
+                <h6 class="m-0 font-weight-bold text-primary">Recent Fault Activity</h6>
+            </div>
+            <div class="card-body">
+                <div class="timeline-list">
+                    {% for item in recent_fault_activity %}
+                    <div class="timeline-item mb-3">
+                        <div class="small text-muted">{{ item.timestamp|date:"d M Y H:i" }}</div>
+                        <div>{{ item.description }}</div>
+                    </div>
+                    {% empty %}
+                    <div class="text-muted">No workflow activity has been recorded yet.</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const statusChart = document.getElementById('statusChart');
+if (statusChart) {
+    new Chart(statusChart, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                'New',
+                'Assigned',
+                'Under Analysis',
+                'Root Cause Identified',
+                'Fix In Progress',
+                'Resolved',
+                'Verified Closed',
+            ],
+            datasets: [{
+                data: [
+                    {{ status_counts.new }},
+                    {{ status_counts.assigned }},
+                    {{ status_counts.under_analysis }},
+                    {{ status_counts.root_cause }},
+                    {{ status_counts.fix_progress }},
+                    {{ status_counts.resolved }},
+                    {{ status_counts.verified_closed }},
+                ],
+                backgroundColor: ['#6c757d', '#0d6efd', '#ffc107', '#d63384', '#20c997', '#198754', '#0dcaf0'],
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        },
+    });
+}
+
+const severityChart = document.getElementById('severityChart');
+if (severityChart) {
+    new Chart(severityChart, {
+        type: 'bar',
+        data: {
+            labels: ['Critical', 'Major', 'Minor'],
+            datasets: [{
+                data: [{{ critical_faults }}, {{ major_faults }}, {{ minor_faults }}],
+                backgroundColor: ['#dc3545', '#ffc107', '#0dcaf0'],
+            }],
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false,
+                },
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+        },
+    });
+}
+
+const subsystemChart = document.getElementById('subsystemChart');
+if (subsystemChart) {
+    new Chart(subsystemChart, {
+        type: 'bar',
+        data: {
+            labels: [{% for item in subsystem_labels %}'{{ item }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+            datasets: [{
+                data: [{% for item in subsystem_values %}{{ item }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                backgroundColor: '#2c7be5',
+            }],
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false,
+                },
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+        },
+    });
+}
+
+const flightPhaseChart = document.getElementById('flightPhaseChart');
+if (flightPhaseChart) {
+    new Chart(flightPhaseChart, {
+        type: 'line',
+        data: {
+            labels: [{% for item in flight_phase_labels %}'{{ item }}'{% if not forloop.last %}, {% endif %}{% endfor %}],
+            datasets: [{
+                data: [{% for item in flight_phase_values %}{{ item }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                borderColor: '#0d6efd',
+                backgroundColor: 'rgba(13, 110, 253, 0.15)',
+                fill: true,
+                tension: 0.3,
+            }],
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: false,
+                },
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+        },
+    });
+}
+</script>
+{% endblock %}

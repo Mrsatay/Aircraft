@@ -1,0 +1,3938 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$uTgcAVGWF27JIXklwlHdzw$67OeojxLYcLuHp+Xyq9gRgrfTrNpAfVEXusRjfM3T48=",
+    "last_login": "2026-05-02T14:55:51.006Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "Admin",
+    "last_name": "User",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-04-06T06:33:30.021Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$k6rGMtECShB4VK0hNr9maM$/MMtt2V94hUMkjhHkRGYZVk1DWVoeV2+Q3ZFXJ9zXfk=",
+    "last_login": "2026-04-13T05:08:01.591Z",
+    "is_superuser": false,
+    "username": "engineer",
+    "first_name": "Test",
+    "last_name": "Engineer",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-06T06:33:30.544Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Em96jrmLlIKA0f1gI8RrmS$mFMB3SQn4JDQhR0nFzDuvIe0vdZD9A8vnT9y4t8/wd8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "manager",
+    "first_name": "Test",
+    "last_name": "Manager",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-06T06:33:31.059Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$aTGNLHb8csBOCn4os5xUQ3$3EqsMpdo5pdyHwVdpz+mhCm86ESlyUxj2K/BelRoTTs=",
+    "last_login": "2026-04-29T04:13:26.324Z",
+    "is_superuser": false,
+    "username": "engineer1",
+    "first_name": "engineeeer",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T04:13:16.259Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$afgDLdMl74WG0Fan1WDAyW$2b0eISmU1qrlfKnZ1bJrGoSAEuLZ7/g/Acie/Od+Eig=",
+    "last_login": "2026-04-29T04:14:29.846Z",
+    "is_superuser": false,
+    "username": "manager1",
+    "first_name": "manager",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T04:14:19.747Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$HKUF7n89avCKVuBHRklylA$HZZ7SLt0Min5zTCn1qj21V0FO8woftjvp3yAp9CIqqQ=",
+    "last_login": "2026-04-29T04:15:24.026Z",
+    "is_superuser": false,
+    "username": "pembaruan",
+    "first_name": "pembaruan",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-29T04:15:14.862Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "role": "Admin"
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "role": "Test Engineer"
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 3,
+  "fields": {
+    "user": 3,
+    "role": "Test Manager"
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 5,
+  "fields": {
+    "user": 5,
+    "role": "Test Engineer"
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 6,
+  "fields": {
+    "user": 6,
+    "role": "Test Manager"
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 7,
+  "fields": {
+    "user": 7,
+    "role": "Maintenance Engineer"
+  }
+},
+{
+  "model": "aircraft.aircraft",
+  "pk": 1,
+  "fields": {
+    "tail_number": "PK-AF001",
+    "model": "B737-800",
+    "manufacturer": "Boeing",
+    "current_status": "Testing"
+  }
+},
+{
+  "model": "aircraft.aircraft",
+  "pk": 2,
+  "fields": {
+    "tail_number": "PK-AF009",
+    "model": "A320neo",
+    "manufacturer": "Airbus",
+    "current_status": "Maintenance Review"
+  }
+},
+{
+  "model": "aircraft.aircraft",
+  "pk": 3,
+  "fields": {
+    "tail_number": "PK-AF017",
+    "model": "B777-300ER",
+    "manufacturer": "Boeing",
+    "current_status": "Operational"
+  }
+},
+{
+  "model": "aircraft.aircraft",
+  "pk": 4,
+  "fields": {
+    "tail_number": "PK-AF021",
+    "model": "ATR 72-600",
+    "manufacturer": "ATR",
+    "current_status": "Available"
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 1,
+  "fields": {
+    "title": "Hydraulic pressure fluctuation during taxi",
+    "description": "Crew observed unstable hydraulic pressure on taxi-out with intermittent advisory indications.",
+    "aircraft": 1,
+    "reported_by": null,
+    "assigned_to": 1,
+    "subsystem": "Hydraulics",
+    "severity": "Critical",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-09T09:07:38.911Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Pressure spikes correlated with pump temperature rise.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": null,
+    "resolution_time_hours": null,
+    "component_affected": "Hydraulic Pump B",
+    "environmental_conditions": "Hot and humid apron conditions",
+    "flight_phase": "Taxi",
+    "ai_explanation": "Summary  \nDuring taxi, Hydraulic Pump B on PK‑AF001 (B737‑800) exhibited unstable pressure with intermittent advisory warnings. The pressure spikes coincided with rising pump temperature under hot, humid apron conditions.\n\nOperational Impact  \nUnstable hydraulic pressure can degrade the reliability of flight‑control and landing‑gear systems, potentially leading to loss of hydraulic power during critical phases (e.g., takeoff, landing) and increasing the risk of an unsafe aircraft state.\n\nRecommended Next Step  \nPerform a detailed inspection and functional test of Hydraulic Pump B (including temperature sensors, relief valves, and pump drive) to identify the source of temperature‑related pressure fluctuations; replace or repair the pump as indicated by findings before returning the aircraft to service."
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 2,
+  "fields": {
+    "title": "FMS intermittent data refresh delay",
+    "description": "Navigation display requires several seconds to refresh route amendments after input.",
+    "aircraft": 2,
+    "reported_by": null,
+    "assigned_to": 1,
+    "subsystem": "Avionics",
+    "severity": "Major",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-09T09:07:38.912Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": null,
+    "resolution_time_hours": null,
+    "component_affected": "FMS CDU",
+    "environmental_conditions": "Normal daylight operations",
+    "flight_phase": "Cruise",
+    "ai_explanation": "Summary\nThe Flight Management System (FMS) on PK-AF009 (A320neo) experiences intermittent delays of several seconds when refreshing the navigation display after route amendments are entered via the CDU.\n\nOperational Impact\nDuring cruise, delayed FMS updates can hinder timely execution of ATC clearances or weather deviations, increasing pilot workload and potentially leading to navigation errors if the crew relies on stale information for decision‑making.\n\nRecommended Next Step\nPerform a diagnostic checkout of the FMS CDU and associated data buses (ARINC 429/AFDX) to isolate latency sources, update FMS software to the latest revision if applicable, and replace the CDU or related avionics module if faults are confirmed. Document findings and close the fault after verification of normal refresh times."
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 3,
+  "fields": {
+    "title": "Fuel quantity mismatch after engine start",
+    "description": "Fuel indication shows asymmetrical reading after engine start sequence despite balanced fueling record.",
+    "aircraft": 3,
+    "reported_by": null,
+    "assigned_to": 1,
+    "subsystem": "Fuel",
+    "severity": "Critical",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-09T09:07:38.912Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "Suspected sensor calibration drift after overnight parking.",
+    "resolution_action": "",
+    "severity_score": null,
+    "resolution_time_hours": null,
+    "component_affected": "Fuel quantity indication system",
+    "environmental_conditions": "Light rain before departure",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 4,
+  "fields": {
+    "title": "Spoiler armed indication mismatch",
+    "description": "Spoiler armed annunciation remains amber briefly after selection and clears by itself.",
+    "aircraft": 4,
+    "reported_by": null,
+    "assigned_to": 1,
+    "subsystem": "Flight Controls",
+    "severity": "Minor",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-09T09:07:38.913Z",
+    "closed_date": "2026-04-06T06:34:36.713Z",
+    "closed_by": 1,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "Performed logic module reset and post-maintenance operational check.",
+    "severity_score": null,
+    "resolution_time_hours": null,
+    "component_affected": "Spoiler control logic",
+    "environmental_conditions": "Dry runway condition",
+    "flight_phase": "Landing",
+    "ai_explanation": "Summary\nThe spoiler armed indication on PK‑AF021 (ATR 72‑600) briefly stayed amber after selection and then cleared automatically during landing on a dry runway. The fault was traced to the spoiler control logic and resolved by resetting the logic module and performing an operational check.\n\nOperational Impact\nThe transient amber indication could cause momentary confusion for the flight crew regarding spoiler status, but since the indication cleared on its own and no loss of spoiler function was observed, there was no adverse effect on aircraft controllability or landing performance.\n\nRecommended Next Step\nMonitor the spoiler annunciation during subsequent flights for recurrence. If the amber indication persists or reappears, conduct a detailed inspection of the spoiler control logic unit, verify wiring and connector integrity, and consider replacement of the logic module if faults continue. No further action is required at this time as the fault is resolved."
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 5,
+  "fields": {
+    "title": "Left wings broken",
+    "description": "i dont know what happened actually",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Hydraulics",
+    "severity": "Major",
+    "current_status": "New",
+    "reported_date": "2026-04-13T03:46:10.667Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 2,
+    "resolution_time_hours": null,
+    "component_affected": "",
+    "environmental_conditions": "",
+    "flight_phase": "Descent",
+    "ai_explanation": "Summary\nLeft wing structural damage reported on PK‑AF017 (B777‑300ER) during descent, with the fault logged under the hydraulics subsystem and classified as major severity.\n\nOperational Impact\nCompromised wing integrity can lead to loss of lift, asymmetric flight characteristics, and reduced controllability, necessitating an immediate diversion or emergency landing to ensure crew and passenger safety.\n\nRecommended Next Step\nDeclare an emergency, initiate an immediate descent to the nearest suitable airport, and upon landing conduct a thorough visual and non‑destructive inspection of the left wing and associated hydraulic lines before any further flight."
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 6,
+  "fields": {
+    "title": "Hydraulics test anomaly #006",
+    "description": "Routine test identified a critical anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Hydraulics",
+    "severity": "Critical",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.231Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Hydraulic Pump A",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 7,
+  "fields": {
+    "title": "Avionics test anomaly #007",
+    "description": "Routine test identified a major anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Avionics",
+    "severity": "Major",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.249Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "PFD Display Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 8,
+  "fields": {
+    "title": "Fuel test anomaly #008",
+    "description": "Routine test identified a minor anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Fuel",
+    "severity": "Minor",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.253Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Crossfeed Valve",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 9,
+  "fields": {
+    "title": "Flight Controls test anomaly #009",
+    "description": "Routine test identified a critical anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Flight Controls",
+    "severity": "Critical",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.254Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Spoiler Control Module",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 10,
+  "fields": {
+    "title": "Electrical test anomaly #010",
+    "description": "Routine test identified a major anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Electrical",
+    "severity": "Major",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.255Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Battery Bus",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 11,
+  "fields": {
+    "title": "Landing Gear test anomaly #011",
+    "description": "Routine test identified a minor anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Landing Gear",
+    "severity": "Minor",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.256Z",
+    "closed_date": "2026-04-28T02:48:46.256Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 3,
+    "resolution_time_hours": 6.0,
+    "component_affected": "Brake Control Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 12,
+  "fields": {
+    "title": "Environmental Control test anomaly #012",
+    "description": "Routine test identified a critical anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Environmental Control",
+    "severity": "Critical",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.259Z",
+    "closed_date": "2026-04-28T02:48:46.259Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 9,
+    "resolution_time_hours": 7.0,
+    "component_affected": "Pack Controller",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 13,
+  "fields": {
+    "title": "Navigation test anomaly #013",
+    "description": "Routine test identified a major anomaly in the Navigation subsystem during the post-flight phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Navigation",
+    "severity": "Major",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.261Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "IRS Unit",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Post-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 14,
+  "fields": {
+    "title": "Hydraulics test anomaly #014",
+    "description": "Routine test identified a minor anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Hydraulics",
+    "severity": "Minor",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.262Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Actuator Return Line",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 15,
+  "fields": {
+    "title": "Avionics test anomaly #015",
+    "description": "Routine test identified a critical anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Avionics",
+    "severity": "Critical",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.262Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Flight Management Computer",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 16,
+  "fields": {
+    "title": "Fuel test anomaly #016",
+    "description": "Routine test identified a major anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Fuel",
+    "severity": "Major",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.263Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Boost Pump",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 17,
+  "fields": {
+    "title": "Flight Controls test anomaly #017",
+    "description": "Routine test identified a minor anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Flight Controls",
+    "severity": "Minor",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.264Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Aileron Actuator",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 18,
+  "fields": {
+    "title": "Electrical test anomaly #018",
+    "description": "Routine test identified a critical anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Electrical",
+    "severity": "Critical",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.265Z",
+    "closed_date": "2026-04-28T02:48:46.265Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 9,
+    "resolution_time_hours": 1.0,
+    "component_affected": "Generator Control Unit",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 19,
+  "fields": {
+    "title": "Landing Gear test anomaly #019",
+    "description": "Routine test identified a major anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Landing Gear",
+    "severity": "Major",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.266Z",
+    "closed_date": "2026-04-28T02:48:46.266Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 6,
+    "resolution_time_hours": 2.0,
+    "component_affected": "Main Gear Sensor",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 20,
+  "fields": {
+    "title": "Environmental Control test anomaly #020",
+    "description": "Routine test identified a minor anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Environmental Control",
+    "severity": "Minor",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.267Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Temperature Sensor",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 21,
+  "fields": {
+    "title": "Navigation test anomaly #021",
+    "description": "Routine test identified a critical anomaly in the Navigation subsystem during the post-flight phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Navigation",
+    "severity": "Critical",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.268Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "GPS Receiver",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Post-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 22,
+  "fields": {
+    "title": "Hydraulics test anomaly #022",
+    "description": "Routine test identified a major anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Hydraulics",
+    "severity": "Major",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.269Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Pressure Manifold",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 23,
+  "fields": {
+    "title": "Avionics test anomaly #023",
+    "description": "Routine test identified a minor anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Avionics",
+    "severity": "Minor",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.269Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Data Concentrator Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 24,
+  "fields": {
+    "title": "Fuel test anomaly #024",
+    "description": "Routine test identified a critical anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Fuel",
+    "severity": "Critical",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.270Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Fuel Quantity Sensor",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 25,
+  "fields": {
+    "title": "Flight Controls test anomaly #025",
+    "description": "Routine test identified a major anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Flight Controls",
+    "severity": "Major",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.271Z",
+    "closed_date": "2026-04-28T02:48:46.271Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 6,
+    "resolution_time_hours": 8.0,
+    "component_affected": "Elevator Servo",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 26,
+  "fields": {
+    "title": "Electrical test anomaly #026",
+    "description": "Routine test identified a minor anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Electrical",
+    "severity": "Minor",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.272Z",
+    "closed_date": "2026-04-28T02:48:46.272Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 3,
+    "resolution_time_hours": 9.0,
+    "component_affected": "Power Distribution Panel",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 27,
+  "fields": {
+    "title": "Landing Gear test anomaly #027",
+    "description": "Routine test identified a critical anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Landing Gear",
+    "severity": "Critical",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.273Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Nose Gear Steering",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 28,
+  "fields": {
+    "title": "Environmental Control test anomaly #028",
+    "description": "Routine test identified a major anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Environmental Control",
+    "severity": "Major",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.274Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Cabin Pressure Valve",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 29,
+  "fields": {
+    "title": "Navigation test anomaly #029",
+    "description": "Routine test identified a minor anomaly in the Navigation subsystem during the post-flight phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Navigation",
+    "severity": "Minor",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.275Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "VOR Antenna",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Post-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 30,
+  "fields": {
+    "title": "Hydraulics test anomaly #030",
+    "description": "Routine test identified a critical anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Hydraulics",
+    "severity": "Critical",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.276Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Hydraulic Pump A",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 31,
+  "fields": {
+    "title": "Avionics test anomaly #031",
+    "description": "Routine test identified a major anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Avionics",
+    "severity": "Major",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.277Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "PFD Display Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 32,
+  "fields": {
+    "title": "Fuel test anomaly #032",
+    "description": "Routine test identified a minor anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Fuel",
+    "severity": "Minor",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.277Z",
+    "closed_date": "2026-04-28T02:48:46.277Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 3,
+    "resolution_time_hours": 3.0,
+    "component_affected": "Crossfeed Valve",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 33,
+  "fields": {
+    "title": "Flight Controls test anomaly #033",
+    "description": "Routine test identified a critical anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Flight Controls",
+    "severity": "Critical",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.278Z",
+    "closed_date": "2026-04-28T02:48:46.278Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 9,
+    "resolution_time_hours": 4.0,
+    "component_affected": "Spoiler Control Module",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 34,
+  "fields": {
+    "title": "Electrical test anomaly #034",
+    "description": "Routine test identified a major anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Electrical",
+    "severity": "Major",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.279Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Battery Bus",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 35,
+  "fields": {
+    "title": "Landing Gear test anomaly #035",
+    "description": "Routine test identified a minor anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Landing Gear",
+    "severity": "Minor",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.280Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Brake Control Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 36,
+  "fields": {
+    "title": "Environmental Control test anomaly #036",
+    "description": "Routine test identified a critical anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Environmental Control",
+    "severity": "Critical",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.281Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Pack Controller",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 37,
+  "fields": {
+    "title": "Navigation test anomaly #037",
+    "description": "Routine test identified a major anomaly in the Navigation subsystem during the post-flight phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Navigation",
+    "severity": "Major",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.283Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "IRS Unit",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Post-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 38,
+  "fields": {
+    "title": "Hydraulics test anomaly #038",
+    "description": "Routine test identified a minor anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Hydraulics",
+    "severity": "Minor",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.284Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Actuator Return Line",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 39,
+  "fields": {
+    "title": "Avionics test anomaly #039",
+    "description": "Routine test identified a critical anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Avionics",
+    "severity": "Critical",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.284Z",
+    "closed_date": "2026-04-28T02:48:46.284Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 9,
+    "resolution_time_hours": 10.0,
+    "component_affected": "Flight Management Computer",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 40,
+  "fields": {
+    "title": "Fuel test anomaly #040",
+    "description": "Routine test identified a major anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Fuel",
+    "severity": "Major",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.285Z",
+    "closed_date": "2026-04-28T02:48:46.285Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 6,
+    "resolution_time_hours": 11.0,
+    "component_affected": "Boost Pump",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 41,
+  "fields": {
+    "title": "Flight Controls test anomaly #041",
+    "description": "Routine test identified a minor anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Flight Controls",
+    "severity": "Minor",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.286Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Aileron Actuator",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 42,
+  "fields": {
+    "title": "Electrical test anomaly #042",
+    "description": "Routine test identified a critical anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Electrical",
+    "severity": "Critical",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.287Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Generator Control Unit",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 43,
+  "fields": {
+    "title": "Landing Gear test anomaly #043",
+    "description": "Routine test identified a major anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Landing Gear",
+    "severity": "Major",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.288Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Main Gear Sensor",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 44,
+  "fields": {
+    "title": "Environmental Control test anomaly #044",
+    "description": "Routine test identified a minor anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Environmental Control",
+    "severity": "Minor",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.288Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Temperature Sensor",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 45,
+  "fields": {
+    "title": "Navigation test anomaly #045",
+    "description": "Routine test identified a critical anomaly in the Navigation subsystem during the post-flight phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Navigation",
+    "severity": "Critical",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.289Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "GPS Receiver",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Post-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 46,
+  "fields": {
+    "title": "Hydraulics test anomaly #046",
+    "description": "Routine test identified a major anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Hydraulics",
+    "severity": "Major",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.290Z",
+    "closed_date": "2026-04-28T02:48:46.290Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 6,
+    "resolution_time_hours": 5.0,
+    "component_affected": "Pressure Manifold",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 47,
+  "fields": {
+    "title": "Avionics test anomaly #047",
+    "description": "Routine test identified a minor anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Avionics",
+    "severity": "Minor",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.291Z",
+    "closed_date": "2026-04-28T02:48:46.291Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 3,
+    "resolution_time_hours": 6.0,
+    "component_affected": "Data Concentrator Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 48,
+  "fields": {
+    "title": "Fuel test anomaly #048",
+    "description": "Routine test identified a critical anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Fuel",
+    "severity": "Critical",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.292Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Fuel Quantity Sensor",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 49,
+  "fields": {
+    "title": "Flight Controls test anomaly #049",
+    "description": "Routine test identified a major anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Flight Controls",
+    "severity": "Major",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.292Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Elevator Servo",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 50,
+  "fields": {
+    "title": "Electrical test anomaly #050",
+    "description": "Routine test identified a minor anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Electrical",
+    "severity": "Minor",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.294Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Power Distribution Panel",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 51,
+  "fields": {
+    "title": "Landing Gear test anomaly #051",
+    "description": "Routine test identified a critical anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Landing Gear",
+    "severity": "Critical",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.295Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Nose Gear Steering",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 52,
+  "fields": {
+    "title": "Environmental Control test anomaly #052",
+    "description": "Routine test identified a major anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Environmental Control",
+    "severity": "Major",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.295Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Cabin Pressure Valve",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 53,
+  "fields": {
+    "title": "Navigation test anomaly #053",
+    "description": "Routine test identified a minor anomaly in the Navigation subsystem during the post-flight phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Navigation",
+    "severity": "Minor",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.296Z",
+    "closed_date": "2026-04-28T02:48:46.296Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 3,
+    "resolution_time_hours": 12.0,
+    "component_affected": "VOR Antenna",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Post-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 54,
+  "fields": {
+    "title": "Hydraulics test anomaly #054",
+    "description": "Routine test identified a critical anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Hydraulics",
+    "severity": "Critical",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.297Z",
+    "closed_date": "2026-04-28T02:48:46.297Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 9,
+    "resolution_time_hours": 1.0,
+    "component_affected": "Hydraulic Pump A",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 55,
+  "fields": {
+    "title": "Avionics test anomaly #055",
+    "description": "Routine test identified a major anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Avionics",
+    "severity": "Major",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.298Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "PFD Display Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 56,
+  "fields": {
+    "title": "Fuel test anomaly #056",
+    "description": "Routine test identified a minor anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Fuel",
+    "severity": "Minor",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.299Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Crossfeed Valve",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 57,
+  "fields": {
+    "title": "Flight Controls test anomaly #057",
+    "description": "Routine test identified a critical anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Flight Controls",
+    "severity": "Critical",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.300Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Spoiler Control Module",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 58,
+  "fields": {
+    "title": "Electrical test anomaly #058",
+    "description": "Routine test identified a major anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Electrical",
+    "severity": "Major",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.301Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Battery Bus",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 59,
+  "fields": {
+    "title": "Landing Gear test anomaly #059",
+    "description": "Routine test identified a minor anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Landing Gear",
+    "severity": "Minor",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.301Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Brake Control Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 60,
+  "fields": {
+    "title": "Environmental Control test anomaly #060",
+    "description": "Routine test identified a critical anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Environmental Control",
+    "severity": "Critical",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.302Z",
+    "closed_date": "2026-04-28T02:48:46.302Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 9,
+    "resolution_time_hours": 7.0,
+    "component_affected": "Pack Controller",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 61,
+  "fields": {
+    "title": "Navigation test anomaly #061",
+    "description": "Routine test identified a major anomaly in the Navigation subsystem during the post-flight phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Navigation",
+    "severity": "Major",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.303Z",
+    "closed_date": "2026-04-28T02:48:46.303Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 6,
+    "resolution_time_hours": 8.0,
+    "component_affected": "IRS Unit",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Post-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 62,
+  "fields": {
+    "title": "Hydraulics test anomaly #062",
+    "description": "Routine test identified a minor anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Hydraulics",
+    "severity": "Minor",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.304Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Actuator Return Line",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 63,
+  "fields": {
+    "title": "Avionics test anomaly #063",
+    "description": "Routine test identified a critical anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Avionics",
+    "severity": "Critical",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.304Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Flight Management Computer",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 64,
+  "fields": {
+    "title": "Fuel test anomaly #064",
+    "description": "Routine test identified a major anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Fuel",
+    "severity": "Major",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.305Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Boost Pump",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 65,
+  "fields": {
+    "title": "Flight Controls test anomaly #065",
+    "description": "Routine test identified a minor anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Flight Controls",
+    "severity": "Minor",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.306Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Aileron Actuator",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 66,
+  "fields": {
+    "title": "Electrical test anomaly #066",
+    "description": "Routine test identified a critical anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Electrical",
+    "severity": "Critical",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.307Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Generator Control Unit",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 67,
+  "fields": {
+    "title": "Landing Gear test anomaly #067",
+    "description": "Routine test identified a major anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Landing Gear",
+    "severity": "Major",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.308Z",
+    "closed_date": "2026-04-28T02:48:46.307Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 6,
+    "resolution_time_hours": 2.0,
+    "component_affected": "Main Gear Sensor",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 68,
+  "fields": {
+    "title": "Environmental Control test anomaly #068",
+    "description": "Routine test identified a minor anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Environmental Control",
+    "severity": "Minor",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.308Z",
+    "closed_date": "2026-04-28T02:48:46.308Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 3,
+    "resolution_time_hours": 3.0,
+    "component_affected": "Temperature Sensor",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 69,
+  "fields": {
+    "title": "Navigation test anomaly #069",
+    "description": "Routine test identified a critical anomaly in the Navigation subsystem during the post-flight phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Navigation",
+    "severity": "Critical",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.309Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "GPS Receiver",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Post-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 70,
+  "fields": {
+    "title": "Hydraulics test anomaly #070",
+    "description": "Routine test identified a major anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Hydraulics",
+    "severity": "Major",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.310Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Pressure Manifold",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 71,
+  "fields": {
+    "title": "Avionics test anomaly #071",
+    "description": "Routine test identified a minor anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Avionics",
+    "severity": "Minor",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.311Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Data Concentrator Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 72,
+  "fields": {
+    "title": "Fuel test anomaly #072",
+    "description": "Routine test identified a critical anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Fuel",
+    "severity": "Critical",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.311Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Fuel Quantity Sensor",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 73,
+  "fields": {
+    "title": "Flight Controls test anomaly #073",
+    "description": "Routine test identified a major anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Flight Controls",
+    "severity": "Major",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.312Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Elevator Servo",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 74,
+  "fields": {
+    "title": "Electrical test anomaly #074",
+    "description": "Routine test identified a minor anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Electrical",
+    "severity": "Minor",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.313Z",
+    "closed_date": "2026-04-28T02:48:46.313Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 3,
+    "resolution_time_hours": 9.0,
+    "component_affected": "Power Distribution Panel",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 75,
+  "fields": {
+    "title": "Landing Gear test anomaly #075",
+    "description": "Routine test identified a critical anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Landing Gear",
+    "severity": "Critical",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.314Z",
+    "closed_date": "2026-04-28T02:48:46.314Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 9,
+    "resolution_time_hours": 10.0,
+    "component_affected": "Nose Gear Steering",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 76,
+  "fields": {
+    "title": "Environmental Control test anomaly #076",
+    "description": "Routine test identified a major anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Environmental Control",
+    "severity": "Major",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.315Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Cabin Pressure Valve",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 77,
+  "fields": {
+    "title": "Navigation test anomaly #077",
+    "description": "Routine test identified a minor anomaly in the Navigation subsystem during the post-flight phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Navigation",
+    "severity": "Minor",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.315Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "VOR Antenna",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Post-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 78,
+  "fields": {
+    "title": "Hydraulics test anomaly #078",
+    "description": "Routine test identified a critical anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Hydraulics",
+    "severity": "Critical",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.316Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Hydraulic Pump A",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 79,
+  "fields": {
+    "title": "Avionics test anomaly #079",
+    "description": "Routine test identified a major anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Avionics",
+    "severity": "Major",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.318Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "PFD Display Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 80,
+  "fields": {
+    "title": "Fuel test anomaly #080",
+    "description": "Routine test identified a minor anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Fuel",
+    "severity": "Minor",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.319Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Crossfeed Valve",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 81,
+  "fields": {
+    "title": "Flight Controls test anomaly #081",
+    "description": "Routine test identified a critical anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Flight Controls",
+    "severity": "Critical",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.319Z",
+    "closed_date": "2026-04-28T02:48:46.319Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 9,
+    "resolution_time_hours": 4.0,
+    "component_affected": "Spoiler Control Module",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 82,
+  "fields": {
+    "title": "Electrical test anomaly #082",
+    "description": "Routine test identified a major anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Electrical",
+    "severity": "Major",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.320Z",
+    "closed_date": "2026-04-28T02:48:46.320Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 6,
+    "resolution_time_hours": 5.0,
+    "component_affected": "Battery Bus",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 83,
+  "fields": {
+    "title": "Landing Gear test anomaly #083",
+    "description": "Routine test identified a minor anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Landing Gear",
+    "severity": "Minor",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.321Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Brake Control Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 84,
+  "fields": {
+    "title": "Environmental Control test anomaly #084",
+    "description": "Routine test identified a critical anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Environmental Control",
+    "severity": "Critical",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.322Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Pack Controller",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 85,
+  "fields": {
+    "title": "Navigation test anomaly #085",
+    "description": "Routine test identified a major anomaly in the Navigation subsystem during the post-flight phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Navigation",
+    "severity": "Major",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.322Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "IRS Unit",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Post-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 86,
+  "fields": {
+    "title": "Hydraulics test anomaly #086",
+    "description": "Routine test identified a minor anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Hydraulics",
+    "severity": "Minor",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.323Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Actuator Return Line",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 87,
+  "fields": {
+    "title": "Avionics test anomaly #087",
+    "description": "Routine test identified a critical anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Avionics",
+    "severity": "Critical",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.324Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Flight Management Computer",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 88,
+  "fields": {
+    "title": "Fuel test anomaly #088",
+    "description": "Routine test identified a major anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Fuel",
+    "severity": "Major",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.325Z",
+    "closed_date": "2026-04-28T02:48:46.325Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 6,
+    "resolution_time_hours": 11.0,
+    "component_affected": "Boost Pump",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 89,
+  "fields": {
+    "title": "Flight Controls test anomaly #089",
+    "description": "Routine test identified a minor anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Flight Controls",
+    "severity": "Minor",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.326Z",
+    "closed_date": "2026-04-28T02:48:46.325Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 3,
+    "resolution_time_hours": 12.0,
+    "component_affected": "Aileron Actuator",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 90,
+  "fields": {
+    "title": "Electrical test anomaly #090",
+    "description": "Routine test identified a critical anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": null,
+    "subsystem": "Electrical",
+    "severity": "Critical",
+    "current_status": "New",
+    "reported_date": "2026-04-28T02:48:46.326Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Generator Control Unit",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 91,
+  "fields": {
+    "title": "Landing Gear test anomaly #091",
+    "description": "Routine test identified a major anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Landing Gear",
+    "severity": "Major",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.327Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Main Gear Sensor",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 92,
+  "fields": {
+    "title": "Environmental Control test anomaly #092",
+    "description": "Routine test identified a minor anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Environmental Control",
+    "severity": "Minor",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.328Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Temperature Sensor",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 93,
+  "fields": {
+    "title": "Navigation test anomaly #093",
+    "description": "Routine test identified a critical anomaly in the Navigation subsystem during the post-flight phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Navigation",
+    "severity": "Critical",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.329Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "GPS Receiver",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Post-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 94,
+  "fields": {
+    "title": "Hydraulics test anomaly #094",
+    "description": "Routine test identified a major anomaly in the Hydraulics subsystem during the pre-flight phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Hydraulics",
+    "severity": "Major",
+    "current_status": "Fix In Progress",
+    "reported_date": "2026-04-28T02:48:46.330Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Pressure Manifold",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Pre-Flight",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 95,
+  "fields": {
+    "title": "Avionics test anomaly #095",
+    "description": "Routine test identified a minor anomaly in the Avionics subsystem during the taxi phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Avionics",
+    "severity": "Minor",
+    "current_status": "Resolved",
+    "reported_date": "2026-04-28T02:48:46.331Z",
+    "closed_date": "2026-04-28T02:48:46.331Z",
+    "closed_by": 3,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 3,
+    "resolution_time_hours": 6.0,
+    "component_affected": "Data Concentrator Unit",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Taxi",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 96,
+  "fields": {
+    "title": "Fuel test anomaly #096",
+    "description": "Routine test identified a critical anomaly in the Fuel subsystem during the takeoff phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Fuel",
+    "severity": "Critical",
+    "current_status": "Verified Closed",
+    "reported_date": "2026-04-28T02:48:46.332Z",
+    "closed_date": "2026-04-28T02:48:46.332Z",
+    "closed_by": 2,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "Corrective maintenance completed and operational check passed.",
+    "severity_score": 9,
+    "resolution_time_hours": 7.0,
+    "component_affected": "Fuel Quantity Sensor",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Takeoff",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 97,
+  "fields": {
+    "title": "Flight Controls test anomaly #097",
+    "description": "Routine test identified a major anomaly in the Flight Controls subsystem during the climb phase on aircraft PK-AF021.",
+    "aircraft": 4,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Flight Controls",
+    "severity": "Major",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.333Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Elevator Servo",
+    "environmental_conditions": "Night operation",
+    "flight_phase": "Climb",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 98,
+  "fields": {
+    "title": "Electrical test anomaly #098",
+    "description": "Routine test identified a minor anomaly in the Electrical subsystem during the cruise phase on aircraft PK-AF001.",
+    "aircraft": 1,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Electrical",
+    "severity": "Minor",
+    "current_status": "Assigned",
+    "reported_date": "2026-04-28T02:48:46.334Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 3,
+    "resolution_time_hours": null,
+    "component_affected": "Power Distribution Panel",
+    "environmental_conditions": "Clear",
+    "flight_phase": "Cruise",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 99,
+  "fields": {
+    "title": "Landing Gear test anomaly #099",
+    "description": "Routine test identified a critical anomaly in the Landing Gear subsystem during the descent phase on aircraft PK-AF009.",
+    "aircraft": 2,
+    "reported_by": 1,
+    "assigned_to": 3,
+    "subsystem": "Landing Gear",
+    "severity": "Critical",
+    "current_status": "Under Analysis",
+    "reported_date": "2026-04-28T02:48:46.334Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "",
+    "resolution_action": "",
+    "severity_score": 9,
+    "resolution_time_hours": null,
+    "component_affected": "Nose Gear Steering",
+    "environmental_conditions": "Light rain",
+    "flight_phase": "Descent",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.fault",
+  "pk": 100,
+  "fields": {
+    "title": "Environmental Control test anomaly #100",
+    "description": "Routine test identified a major anomaly in the Environmental Control subsystem during the landing phase on aircraft PK-AF017.",
+    "aircraft": 3,
+    "reported_by": 1,
+    "assigned_to": 2,
+    "subsystem": "Environmental Control",
+    "severity": "Major",
+    "current_status": "Root Cause Identified",
+    "reported_date": "2026-04-28T02:48:46.335Z",
+    "closed_date": null,
+    "closed_by": null,
+    "analysis_findings": "Initial diagnostics completed.",
+    "root_cause": "Component degradation confirmed during inspection.",
+    "resolution_action": "",
+    "severity_score": 6,
+    "resolution_time_hours": null,
+    "component_affected": "Cabin Pressure Valve",
+    "environmental_conditions": "High humidity",
+    "flight_phase": "Landing",
+    "ai_explanation": ""
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 1,
+  "fields": {
+    "fault": 4,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": null,
+    "change_notes": "Initial triage and assignment.",
+    "change_timestamp": "2026-04-09T09:07:38.914Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 2,
+  "fields": {
+    "fault": 4,
+    "old_status": "Assigned",
+    "new_status": "Under Analysis",
+    "changed_by": 1,
+    "change_notes": "Engineering analysis started.",
+    "change_timestamp": "2026-04-09T09:07:38.914Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 3,
+  "fields": {
+    "fault": 4,
+    "old_status": "Under Analysis",
+    "new_status": "Root Cause Identified",
+    "changed_by": 1,
+    "change_notes": "Root cause isolated from troubleshooting data.",
+    "change_timestamp": "2026-04-09T09:07:38.915Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 4,
+  "fields": {
+    "fault": 4,
+    "old_status": "Root Cause Identified",
+    "new_status": "Fix In Progress",
+    "changed_by": 1,
+    "change_notes": "Corrective action moved into execution.",
+    "change_timestamp": "2026-04-09T09:07:38.915Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 5,
+  "fields": {
+    "fault": 4,
+    "old_status": "Fix In Progress",
+    "new_status": "Resolved",
+    "changed_by": 1,
+    "change_notes": "Corrective action completed.",
+    "change_timestamp": "2026-04-09T09:07:38.915Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 6,
+  "fields": {
+    "fault": 3,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": null,
+    "change_notes": "Initial triage and assignment.",
+    "change_timestamp": "2026-04-09T09:07:38.916Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 7,
+  "fields": {
+    "fault": 3,
+    "old_status": "Assigned",
+    "new_status": "Under Analysis",
+    "changed_by": 1,
+    "change_notes": "Engineering analysis started.",
+    "change_timestamp": "2026-04-09T09:07:38.916Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 8,
+  "fields": {
+    "fault": 3,
+    "old_status": "Under Analysis",
+    "new_status": "Root Cause Identified",
+    "changed_by": 1,
+    "change_notes": "Root cause isolated from troubleshooting data.",
+    "change_timestamp": "2026-04-09T09:07:38.916Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 9,
+  "fields": {
+    "fault": 3,
+    "old_status": "Root Cause Identified",
+    "new_status": "Fix In Progress",
+    "changed_by": 1,
+    "change_notes": "Corrective action moved into execution.",
+    "change_timestamp": "2026-04-09T09:07:38.916Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 10,
+  "fields": {
+    "fault": 2,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": null,
+    "change_notes": "Initial triage and assignment.",
+    "change_timestamp": "2026-04-09T09:07:38.917Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 11,
+  "fields": {
+    "fault": 1,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": null,
+    "change_notes": "Initial triage and assignment.",
+    "change_timestamp": "2026-04-09T09:07:38.917Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 12,
+  "fields": {
+    "fault": 1,
+    "old_status": "Assigned",
+    "new_status": "Under Analysis",
+    "changed_by": 1,
+    "change_notes": "Engineering analysis started.",
+    "change_timestamp": "2026-04-09T09:07:38.918Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 13,
+  "fields": {
+    "fault": 5,
+    "old_status": "",
+    "new_status": "New",
+    "changed_by": 1,
+    "change_notes": "Fault record created.",
+    "change_timestamp": "2026-04-13T03:46:10.673Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 14,
+  "fields": {
+    "fault": 7,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.250Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 15,
+  "fields": {
+    "fault": 8,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.253Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 16,
+  "fields": {
+    "fault": 9,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.255Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 17,
+  "fields": {
+    "fault": 10,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.256Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 18,
+  "fields": {
+    "fault": 11,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.259Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 19,
+  "fields": {
+    "fault": 12,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.260Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 20,
+  "fields": {
+    "fault": 14,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.262Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 21,
+  "fields": {
+    "fault": 15,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.263Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 22,
+  "fields": {
+    "fault": 16,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.264Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 23,
+  "fields": {
+    "fault": 17,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.265Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 24,
+  "fields": {
+    "fault": 18,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.266Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 25,
+  "fields": {
+    "fault": 19,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.267Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 26,
+  "fields": {
+    "fault": 21,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.268Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 27,
+  "fields": {
+    "fault": 22,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.269Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 28,
+  "fields": {
+    "fault": 23,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.270Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 29,
+  "fields": {
+    "fault": 24,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.271Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 30,
+  "fields": {
+    "fault": 25,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.271Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 31,
+  "fields": {
+    "fault": 26,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.273Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 32,
+  "fields": {
+    "fault": 28,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.274Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 33,
+  "fields": {
+    "fault": 29,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.275Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 34,
+  "fields": {
+    "fault": 30,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.276Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 35,
+  "fields": {
+    "fault": 31,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.277Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 36,
+  "fields": {
+    "fault": 32,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.278Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 37,
+  "fields": {
+    "fault": 33,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.279Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 38,
+  "fields": {
+    "fault": 35,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.281Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 39,
+  "fields": {
+    "fault": 36,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.282Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 40,
+  "fields": {
+    "fault": 37,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.283Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 41,
+  "fields": {
+    "fault": 38,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.284Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 42,
+  "fields": {
+    "fault": 39,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.285Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 43,
+  "fields": {
+    "fault": 40,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.286Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 44,
+  "fields": {
+    "fault": 42,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.287Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 45,
+  "fields": {
+    "fault": 43,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.288Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 46,
+  "fields": {
+    "fault": 44,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.289Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 47,
+  "fields": {
+    "fault": 45,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.290Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 48,
+  "fields": {
+    "fault": 46,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.290Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 49,
+  "fields": {
+    "fault": 47,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.291Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 50,
+  "fields": {
+    "fault": 49,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.293Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 51,
+  "fields": {
+    "fault": 50,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.294Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 52,
+  "fields": {
+    "fault": 51,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.295Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 53,
+  "fields": {
+    "fault": 52,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.296Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 54,
+  "fields": {
+    "fault": 53,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.297Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 55,
+  "fields": {
+    "fault": 54,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.298Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 56,
+  "fields": {
+    "fault": 56,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.299Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 57,
+  "fields": {
+    "fault": 57,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.300Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 58,
+  "fields": {
+    "fault": 58,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.301Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 59,
+  "fields": {
+    "fault": 59,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.302Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 60,
+  "fields": {
+    "fault": 60,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.303Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 61,
+  "fields": {
+    "fault": 61,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.304Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 62,
+  "fields": {
+    "fault": 63,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.305Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 63,
+  "fields": {
+    "fault": 64,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.306Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 64,
+  "fields": {
+    "fault": 65,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.306Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 65,
+  "fields": {
+    "fault": 66,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.307Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 66,
+  "fields": {
+    "fault": 67,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.308Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 67,
+  "fields": {
+    "fault": 68,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.309Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 68,
+  "fields": {
+    "fault": 70,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.310Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 69,
+  "fields": {
+    "fault": 71,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.311Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 70,
+  "fields": {
+    "fault": 72,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.312Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 71,
+  "fields": {
+    "fault": 73,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.313Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 72,
+  "fields": {
+    "fault": 74,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.313Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 73,
+  "fields": {
+    "fault": 75,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.314Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 74,
+  "fields": {
+    "fault": 77,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.316Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 75,
+  "fields": {
+    "fault": 78,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.317Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 76,
+  "fields": {
+    "fault": 79,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.318Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 77,
+  "fields": {
+    "fault": 80,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.319Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 78,
+  "fields": {
+    "fault": 81,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.320Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 79,
+  "fields": {
+    "fault": 82,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.321Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 80,
+  "fields": {
+    "fault": 84,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.322Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 81,
+  "fields": {
+    "fault": 85,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.323Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 82,
+  "fields": {
+    "fault": 86,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.324Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 83,
+  "fields": {
+    "fault": 87,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.324Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 84,
+  "fields": {
+    "fault": 88,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.325Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 85,
+  "fields": {
+    "fault": 89,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.326Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 86,
+  "fields": {
+    "fault": 91,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.327Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 87,
+  "fields": {
+    "fault": 92,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.329Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 88,
+  "fields": {
+    "fault": 93,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.330Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 89,
+  "fields": {
+    "fault": 94,
+    "old_status": "New",
+    "new_status": "Fix In Progress",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.331Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 90,
+  "fields": {
+    "fault": 95,
+    "old_status": "New",
+    "new_status": "Resolved",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.332Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 91,
+  "fields": {
+    "fault": 96,
+    "old_status": "New",
+    "new_status": "Verified Closed",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.333Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 92,
+  "fields": {
+    "fault": 98,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.334Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 93,
+  "fields": {
+    "fault": 99,
+    "old_status": "New",
+    "new_status": "Under Analysis",
+    "changed_by": 3,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.335Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 94,
+  "fields": {
+    "fault": 100,
+    "old_status": "New",
+    "new_status": "Root Cause Identified",
+    "changed_by": 2,
+    "change_notes": "Generated as representative thesis test data.",
+    "change_timestamp": "2026-04-28T02:48:46.336Z"
+  }
+},
+{
+  "model": "faults.statushistory",
+  "pk": 95,
+  "fields": {
+    "fault": 97,
+    "old_status": "New",
+    "new_status": "Assigned",
+    "changed_by": 1,
+    "change_notes": "",
+    "change_timestamp": "2026-04-29T12:32:25.752Z"
+  }
+}
+]
