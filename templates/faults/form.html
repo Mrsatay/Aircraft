@@ -171,11 +171,6 @@
                 {{ form.resolution_action }}
                 {% if form.resolution_action.errors %}<div class="text-danger small mt-1">{{ form.resolution_action.errors|striptags }}</div>{% endif %}
             </div>
-            <div class="col-md-6">
-                <label class="form-label" for="{{ form.resolution_time_hours.id_for_label }}">Resolution Time Hours</label>
-                {{ form.resolution_time_hours }}
-                {% if form.resolution_time_hours.errors %}<div class="text-danger small mt-1">{{ form.resolution_time_hours.errors|striptags }}</div>{% endif %}
-            </div>
             <div class="col-12">
                 <label class="form-label" for="{{ form.ai_explanation.id_for_label }}">AI Explanation</label>
                 {{ form.ai_explanation }}

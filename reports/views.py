@@ -1,7 +1,7 @@
-from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q
 from django.shortcuts import render
 
+from accounts.decorators import role_required
 from aircraft.models import Aircraft
 from aircraft.services import ensure_demo_aircraft
 from faults.models import Fault
@@ -20,7 +20,7 @@ def _status_badge(status):
     }.get(status, "dark")
 
 
-@login_required
+@role_required("Admin", "Test Manager")
 def reports_view(request):
     ensure_demo_aircraft()
     ensure_demo_faults(request.user)

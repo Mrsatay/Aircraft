@@ -135,7 +135,6 @@ class FaultForm(forms.ModelForm):
             "root_cause",
             "resolution_action",
             "severity_score",
-            "resolution_time_hours",
             "ai_explanation",
         ]
         widgets = {
@@ -147,7 +146,6 @@ class FaultForm(forms.ModelForm):
             "resolution_action": forms.Textarea(attrs={"rows": 4, "placeholder": "Corrective action taken"}),
             "ai_explanation": forms.Textarea(attrs={"rows": 5, "placeholder": "AI explanation output"}),
             "severity_score": forms.NumberInput(attrs={"min": 1, "max": 10, "placeholder": "1 = Low, 10 = Critical"}),
-            "resolution_time_hours": forms.NumberInput(attrs={"step": "0.1", "min": 0, "placeholder": "e.g., 4.5"}),
         }
 
     def __init__(self, *args, **kwargs):

@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
+from django.utils import timezone
 
 from accounts.models import UserProfile
 from aircraft.models import Aircraft
@@ -11,7 +12,7 @@ from .models import Fault, StatusHistory
 class FaultWorkflowTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="engineer", password="pass123")
-        UserProfile.objects.create(user=self.user, role="Test Engineer")
+        UserProfile.objects.create(user=self.user, role="Maintenance Engineer")
         self.client.login(username="engineer", password="pass123")
         self.aircraft = Aircraft.objects.create(
             tail_number="PK-TST01",
@@ -107,6 +108,25 @@ class FaultWorkflowTests(TestCase):
         self.assertRedirects(response, reverse("faults:detail", args=[self.fault.pk]))
         self.fault.refresh_from_db()
         self.assertEqual(self.fault.current_status, "Resolved")
+
+    def test_resolved_status_sets_resolution_time_automatically(self):
+        self.fault.current_status = "Fix In Progress"
+        self.fault.reported_date = timezone.now() - timezone.timedelta(hours=5, minutes=30)
+        self.fault.save(update_fields=["current_status", "reported_date"])
+
+        response = self.client.post(
+            reverse("faults:status_update", args=[self.fault.pk]),
+            {
+                "new_status": "Resolved",
+                "resolution_action": "Replaced leaking hydraulic line and passed pressure test.",
+            },
+        )
+
+        self.assertRedirects(response, reverse("faults:detail", args=[self.fault.pk]))
+        self.fault.refresh_from_db()
+        self.assertEqual(self.fault.current_status, "Resolved")
+        self.assertIsNotNone(self.fault.closed_date)
+        self.assertAlmostEqual(self.fault.resolution_time_hours, 5.5, delta=0.2)
 
     def test_test_manager_can_verified_close_resolved_fault(self):
         manager = User.objects.create_user(username="manager", password="pass123")

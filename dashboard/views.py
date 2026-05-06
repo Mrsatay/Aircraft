@@ -6,7 +6,7 @@ from django.utils import timezone
 from aircraft.models import Aircraft
 from aircraft.services import ensure_demo_aircraft
 from faults.models import Fault, StatusHistory
-from faults.services import ensure_demo_faults
+from faults.services import calculate_resolution_hours, ensure_demo_faults
 
 
 @login_required
@@ -78,7 +78,16 @@ def dashboard_view(request):
         Fault.objects.values("flight_phase").exclude(flight_phase="").annotate(total=Count("id")).order_by("flight_phase")
     )
 
-    resolution_values = list(Fault.objects.exclude(resolution_time_hours__isnull=True).values_list("resolution_time_hours", flat=True))
+    closed_faults = Fault.objects.filter(
+        current_status__in=["Resolved", "Verified Closed"],
+        reported_date__isnull=False,
+        closed_date__isnull=False,
+    )
+    resolution_values = [
+        calculate_resolution_hours(fault.reported_date, fault.closed_date)
+        for fault in closed_faults
+    ]
+    resolution_values = [value for value in resolution_values if value is not None]
     avg_resolution_hours = round(sum(resolution_values) / len(resolution_values), 1) if resolution_values else 0
 
     context = {

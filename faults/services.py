@@ -30,14 +30,23 @@ def is_valid_status_transition(current_status, new_status):
     return new_status in get_allowed_statuses(current_status)
 
 
+def calculate_resolution_hours(reported_date, closed_date):
+    if not reported_date or not closed_date:
+        return None
+    seconds = max((closed_date - reported_date).total_seconds(), 0)
+    return round(seconds / 3600, 1)
+
+
 def sync_fault_closure(fault, user=None):
     if fault.current_status in ["Resolved", "Verified Closed"]:
         fault.closed_date = fault.closed_date or timezone.now()
+        fault.resolution_time_hours = calculate_resolution_hours(fault.reported_date, fault.closed_date)
         if user and not fault.closed_by:
             fault.closed_by = user
     else:
         fault.closed_date = None
         fault.closed_by = None
+        fault.resolution_time_hours = None
 
 
 def create_status_history(fault, old_status, user=None, notes=""):

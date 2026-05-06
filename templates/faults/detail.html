@@ -96,15 +96,17 @@
                 <div class="alert alert-info py-2 px-3 small mb-3" role="alert">
                     <strong>Workflow rule:</strong>
                     {% if fault.current_status == "New" %}
-                        This fault is newly reported. Assign it to an engineer to start the workflow.
+                        Test Manager assigns this new fault to a Test Engineer or Maintenance Engineer.
                     {% elif fault.current_status == "Assigned" %}
-                        Moving to <strong>Under Analysis</strong> requires Analysis Findings.
+                        The assigned Maintenance Engineer starts the investigation by moving it to <strong>Under Analysis</strong>.
                     {% elif fault.current_status == "Under Analysis" %}
-                        Moving to <strong>Root Cause Identified</strong> requires Root Cause.
+                        Maintenance Engineer records the analysis and identifies the root cause.
+                    {% elif fault.current_status == "Root Cause Identified" %}
+                        Maintenance Engineer moves the fault into corrective action.
                     {% elif fault.current_status == "Fix In Progress" %}
-                        Corrective action is being implemented. Move to <strong>Resolved</strong> after the fix has been applied.
+                        Maintenance Engineer records the corrective action and resolves the fault after the fix is applied.
                     {% elif fault.current_status == "Resolved" %}
-                        The fix has been applied. Admin or Test Manager can verify and close this fault.
+                        Test Manager verifies the result and closes the fault as <strong>Verified Closed</strong>.
                     {% elif fault.current_status == "Verified Closed" %}
                         This fault has been verified and officially closed. No further workflow action is required.
                     {% else %}
@@ -117,7 +119,7 @@
                         <label class="form-label" for="new_status">Next Status</label>
                         <select class="form-select" id="new_status" name="new_status">
                             {% for status in allowed_statuses %}
-                                <option value="{{ status }}" {% if status == fault.current_status %}selected{% endif %}>{{ status }}</option>
+                                <option value="{{ status }}">{{ status }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -135,18 +137,19 @@
                             <div class="form-text">Only Admin or Test Manager can assign or reassign faults.</div>
                         </div>
                     {% endif %}
-                    <div class="col-12">
-                        <label class="form-label" for="analysis_findings">Analysis Findings</label>
+                    <div class="col-12 workflow-field" data-required-status="Under Analysis">
+                        <label class="form-label" for="analysis_findings">Analysis Findings <span class="text-danger workflow-required-marker d-none">*</span></label>
                         <div class="form-text mb-1">Required when the next status is Under Analysis.</div>
                         <textarea class="form-control" id="analysis_findings" name="analysis_findings" rows="3">{{ fault.analysis_findings }}</textarea>
                     </div>
-                    <div class="col-12">
-                        <label class="form-label" for="root_cause">Root Cause</label>
+                    <div class="col-12 workflow-field" data-required-status="Root Cause Identified">
+                        <label class="form-label" for="root_cause">Root Cause <span class="text-danger workflow-required-marker d-none">*</span></label>
                         <div class="form-text mb-1">Required when the next status is Root Cause Identified.</div>
                         <textarea class="form-control" id="root_cause" name="root_cause" rows="3">{{ fault.root_cause }}</textarea>
                     </div>
-                    <div class="col-12">
-                        <label class="form-label" for="resolution_action">Resolution Action</label>
+                    <div class="col-12 workflow-field" data-required-status="Resolved">
+                        <label class="form-label" for="resolution_action">Resolution Action <span class="text-danger workflow-required-marker d-none">*</span></label>
+                        <div class="form-text mb-1">Required when the next status is Resolved.</div>
                         <textarea class="form-control" id="resolution_action" name="resolution_action" rows="3">{{ fault.resolution_action }}</textarea>
                     </div>
                     <div class="col-12">
@@ -174,6 +177,28 @@
 {% endblock %}
 {% block extra_js %}
 <script>
+const workflowStatusSelect = document.getElementById('new_status');
+const workflowFields = document.querySelectorAll('.workflow-field');
+
+function syncWorkflowFields() {
+    const selectedStatus = workflowStatusSelect?.value || '';
+    workflowFields.forEach((wrapper) => {
+        const requiredStatus = wrapper.dataset.requiredStatus;
+        const shouldShow = selectedStatus === requiredStatus;
+        const input = wrapper.querySelector('textarea, input, select');
+        const marker = wrapper.querySelector('.workflow-required-marker');
+
+        wrapper.classList.toggle('d-none', !shouldShow);
+        marker?.classList.toggle('d-none', !shouldShow);
+        if (input) {
+            input.required = shouldShow;
+        }
+    });
+}
+
+syncWorkflowFields();
+workflowStatusSelect?.addEventListener('change', syncWorkflowFields);
+
 document.getElementById('explain-fault-btn')?.addEventListener('click', async function () {
     const button = this;
     const output = document.getElementById('ai-explanation-text');

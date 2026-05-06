@@ -22,6 +22,17 @@ from .services import (
 
 ASSIGNABLE_ENGINEER_ROLES = ["Test Engineer", "Maintenance Engineer"]
 FAULT_MANAGER_ROLES = ["Admin", "Test Manager"]
+MAINTENANCE_WORKFLOW_STATUSES = {
+    "Assigned": ["Under Analysis"],
+    "Under Analysis": ["Root Cause Identified"],
+    "Root Cause Identified": ["Fix In Progress"],
+    "Fix In Progress": ["Resolved"],
+}
+MANAGER_WORKFLOW_STATUSES = {
+    "New": ["Assigned"],
+    "Assigned": ["Assigned"],
+    "Resolved": ["Verified Closed"],
+}
 
 
 def _fault_queryset():
@@ -33,12 +44,7 @@ def _can_update_fault(user, fault):
         return False
     if fault.current_status == "Verified Closed":
         return False
-    role = get_user_role(user)
-    if role in FAULT_MANAGER_ROLES:
-        return True
-    if role in ["Test Engineer", "Maintenance Engineer"]:
-        return fault.assigned_to_id == user.pk
-    return False
+    return bool(_allowed_statuses_for_user(user, fault))
 
 
 def _can_manage_fault_record(user):
@@ -46,19 +52,32 @@ def _can_manage_fault_record(user):
 
 
 def _allowed_statuses_for_user(user, fault):
-    allowed_statuses = get_allowed_statuses(fault.current_status)
-    if get_user_role(user) not in FAULT_MANAGER_ROLES:
-        return [status for status in allowed_statuses if status != "Verified Closed"]
-    return allowed_statuses
+    role = get_user_role(user)
+    current_status = fault.current_status
+    if role == "Admin":
+        return get_allowed_statuses(current_status)
+    if role == "Test Manager":
+        return MANAGER_WORKFLOW_STATUSES.get(current_status, [])
+    if role == "Maintenance Engineer" and fault.assigned_to_id == user.pk:
+        return MAINTENANCE_WORKFLOW_STATUSES.get(current_status, [])
+    return []
 
 
-def _validate_status_requirements(user, new_status, analysis_findings="", root_cause=""):
+def _can_assign_fault(user, fault):
+    if not _can_manage_fault_record(user):
+        return False
+    return fault.current_status in ["New", "Assigned"]
+
+
+def _validate_status_requirements(user, new_status, analysis_findings="", root_cause="", resolution_action=""):
     if new_status == "Verified Closed" and get_user_role(user) not in FAULT_MANAGER_ROLES:
         return "Only Admin or Test Manager can verify and close a fault."
     if new_status == "Under Analysis" and not analysis_findings.strip():
         return "Analysis Findings are required when moving a fault to Under Analysis."
     if new_status == "Root Cause Identified" and not root_cause.strip():
         return "Root Cause Description is required when moving a fault to Root Cause Identified."
+    if new_status == "Resolved" and not resolution_action.strip():
+        return "Resolution Action is required when moving a fault to Resolved."
     return None
 
 
@@ -180,6 +199,7 @@ def create_fault_view(request):
 def fault_detail_view(request, fault_id):
     fault = get_object_or_404(_fault_queryset(), pk=fault_id)
     can_manage_faults = _can_manage_fault_record(request.user)
+    can_assign_fault = _can_assign_fault(request.user, fault)
     return render(
         request,
         "faults/detail.html",
@@ -189,7 +209,7 @@ def fault_detail_view(request, fault_id):
             "status_history": StatusHistory.objects.select_related("changed_by").filter(fault=fault),
             "allowed_statuses": _allowed_statuses_for_user(request.user, fault),
             "can_update_status": _can_update_fault(request.user, fault),
-            "can_assign_fault": can_manage_faults,
+            "can_assign_fault": can_assign_fault,
             "can_edit_fault": can_manage_faults,
             "can_delete_fault": can_manage_faults,
             "assignable_users": _assignable_users(),
@@ -213,6 +233,7 @@ def fault_edit_view(request, fault_id):
                     fault.current_status,
                     fault.analysis_findings,
                     fault.root_cause,
+                    fault.resolution_action,
                 )
                 if error_message:
                     form.add_error("current_status", error_message)
@@ -257,16 +278,26 @@ def fault_status_update_view(request, fault_id):
     root_cause = request.POST.get("root_cause", "").strip()
     resolution_action = request.POST.get("resolution_action", "").strip()
 
+    if new_status not in _allowed_statuses_for_user(request.user, fault):
+        messages.error(request, f"Your role cannot move this fault to {new_status}.")
+        return redirect("faults:detail", fault_id=fault.pk)
+
     if not is_valid_status_transition(fault.current_status, new_status):
         messages.error(request, f"Invalid status transition from {fault.current_status} to {new_status}.")
         return redirect("faults:detail", fault_id=fault.pk)
 
-    error_message = _validate_status_requirements(request.user, new_status, analysis_findings, root_cause)
+    error_message = _validate_status_requirements(
+        request.user,
+        new_status,
+        analysis_findings,
+        root_cause,
+        resolution_action,
+    )
     if error_message:
         messages.error(request, error_message)
         return redirect("faults:detail", fault_id=fault.pk)
 
-    if _can_manage_fault_record(request.user):
+    if _can_assign_fault(request.user, fault):
         if assigned_to.isdigit():
             assignee = _assignable_users().filter(pk=int(assigned_to)).first()
             if not assignee:

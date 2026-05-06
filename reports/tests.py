@@ -62,3 +62,12 @@ class ReportsViewTests(TestCase):
         self.assertEqual(response.context["total_faults"], 1)
         self.assertContains(response, "Hydraulic pressure issue")
         self.assertNotContains(response, "Display lag")
+
+    def test_test_engineer_cannot_access_reports(self):
+        engineer = User.objects.create_user(username="engineer", password="pass123")
+        UserProfile.objects.create(user=engineer, role="Test Engineer")
+        self.client.login(username="engineer", password="pass123")
+
+        response = self.client.get(reverse("reports:index"))
+
+        self.assertRedirects(response, reverse("dashboard:index"))

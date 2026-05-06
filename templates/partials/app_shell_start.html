@@ -42,7 +42,11 @@
                     {% if request.user.is_authenticated and request.session.role == 'Admin' %}
                     <li class="nav-item"><a class="nav-link {% if active_page == 'users' %}active{% endif %}" href="{% url 'accounts:users' %}"><i class="bi bi-people me-2"></i>User Management</a></li>
                     {% endif %}
+                    {% if request.user.is_authenticated %}
+                    {% if request.session.role == 'Admin' or request.session.role == 'Test Manager' %}
                     <li class="nav-item"><a class="nav-link {% if active_page == 'reports' %}active{% endif %}" href="{% url 'reports:index' %}"><i class="bi bi-graph-up me-2"></i>Reports</a></li>
+                    {% endif %}
+                    {% endif %}
                 </ul>
             </div>
         </nav>
