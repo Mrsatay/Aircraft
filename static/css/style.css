@@ -33,6 +33,7 @@ body {
 /* Main content wrapper */
 main {
     flex: 1;
+    min-width: 0;
 }
 
 /* Adjust sidebar width */
@@ -222,6 +223,39 @@ footer small {
 
 .table-hover tbody tr:hover {
     background-color: rgba(0, 123, 255, 0.05);
+}
+
+.fault-table-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.fault-list-table {
+    min-width: 1080px;
+    width: max-content;
+    margin-bottom: 0;
+}
+
+.fault-list-table th,
+.fault-list-table td {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.fault-list-table th:nth-child(2),
+.fault-list-table td:nth-child(2) {
+    min-width: 210px;
+    max-width: 260px;
+    white-space: normal;
+}
+
+.fault-list-table th:nth-child(4),
+.fault-list-table td:nth-child(4),
+.fault-list-table th:nth-child(6),
+.fault-list-table td:nth-child(6) {
+    min-width: 150px;
 }
 
 /* Form Styles */

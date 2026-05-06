@@ -15,7 +15,7 @@ def role_required(*allowed_roles):
             role = get_user_role(request.user)
             request.session["role"] = role
             if role not in allowed_roles:
-                messages.error(request, "Akses ditolak untuk peran Anda.")
+                messages.error(request, "Access denied for your role.")
                 return redirect("dashboard:index")
             return view_func(request, *args, **kwargs)
 

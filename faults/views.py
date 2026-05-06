@@ -21,6 +21,7 @@ from .services import (
 )
 
 ASSIGNABLE_ENGINEER_ROLES = ["Test Engineer", "Maintenance Engineer"]
+FAULT_MANAGER_ROLES = ["Admin", "Test Manager"]
 
 
 def _fault_queryset():
@@ -30,23 +31,29 @@ def _fault_queryset():
 def _can_update_fault(user, fault):
     if not user.is_authenticated:
         return False
+    if fault.current_status == "Verified Closed":
+        return False
     role = get_user_role(user)
-    if role in ["Admin", "Test Manager"]:
+    if role in FAULT_MANAGER_ROLES:
         return True
     if role in ["Test Engineer", "Maintenance Engineer"]:
-        return fault.assigned_to_id in [None, user.pk]
+        return fault.assigned_to_id == user.pk
     return False
+
+
+def _can_manage_fault_record(user):
+    return user.is_authenticated and get_user_role(user) in FAULT_MANAGER_ROLES
 
 
 def _allowed_statuses_for_user(user, fault):
     allowed_statuses = get_allowed_statuses(fault.current_status)
-    if get_user_role(user) not in ["Admin", "Test Manager"]:
+    if get_user_role(user) not in FAULT_MANAGER_ROLES:
         return [status for status in allowed_statuses if status != "Verified Closed"]
     return allowed_statuses
 
 
 def _validate_status_requirements(user, new_status, analysis_findings="", root_cause=""):
-    if new_status == "Verified Closed" and get_user_role(user) not in ["Admin", "Test Manager"]:
+    if new_status == "Verified Closed" and get_user_role(user) not in FAULT_MANAGER_ROLES:
         return "Only Admin or Test Manager can verify and close a fault."
     if new_status == "Under Analysis" and not analysis_findings.strip():
         return "Analysis Findings are required when moving a fault to Under Analysis."
@@ -63,6 +70,7 @@ def _assignable_users():
 def fault_list_view(request):
     ensure_demo_aircraft()
     ensure_demo_faults(request.user)
+    can_manage_faults = _can_manage_fault_record(request.user)
 
     faults = _fault_queryset()
     status = request.GET.get("status", "").strip()
@@ -125,6 +133,7 @@ def fault_list_view(request):
         "sort": sort,
         "selected_sort_label": sort_options[sort],
         "sort_options": sort_options,
+        "can_manage_faults": can_manage_faults,
     }
     return render(request, "faults/list.html", context)
 
@@ -132,11 +141,20 @@ def fault_list_view(request):
 @role_required("Admin", "Test Engineer", "Test Manager")
 def create_fault_view(request):
     ensure_demo_aircraft()
+    can_assign_on_create = _can_manage_fault_record(request.user)
     if request.method == "POST":
-        form = FaultForm(request.POST)
+        form_data = request.POST.copy()
+        form_data["current_status"] = "New"
+        if not can_assign_on_create:
+            form_data["assigned_to"] = ""
+
+        form = FaultForm(form_data)
         if form.is_valid():
             fault = form.save(commit=False)
             fault.reported_by = request.user
+            fault.current_status = "New"
+            if not can_assign_on_create:
+                fault.assigned_to = None
             sync_fault_closure(fault, request.user)
             fault.save()
             create_status_history(fault, "", request.user, "Fault record created.")
@@ -148,13 +166,20 @@ def create_fault_view(request):
     return render(
         request,
         "faults/form.html",
-        {"active_page": "faults", "form": form, "page_title": "Create Fault", "submit_label": "Save Fault"},
+        {
+            "active_page": "faults",
+            "form": form,
+            "page_title": "Create Fault",
+            "submit_label": "Save Fault",
+            "can_assign_on_create": can_assign_on_create,
+        },
     )
 
 
 @login_required
 def fault_detail_view(request, fault_id):
     fault = get_object_or_404(_fault_queryset(), pk=fault_id)
+    can_manage_faults = _can_manage_fault_record(request.user)
     return render(
         request,
         "faults/detail.html",
@@ -164,12 +189,15 @@ def fault_detail_view(request, fault_id):
             "status_history": StatusHistory.objects.select_related("changed_by").filter(fault=fault),
             "allowed_statuses": _allowed_statuses_for_user(request.user, fault),
             "can_update_status": _can_update_fault(request.user, fault),
+            "can_assign_fault": can_manage_faults,
+            "can_edit_fault": can_manage_faults,
+            "can_delete_fault": can_manage_faults,
             "assignable_users": _assignable_users(),
         },
     )
 
 
-@role_required("Admin", "Test Engineer", "Maintenance Engineer", "Test Manager")
+@role_required("Admin", "Test Manager")
 def fault_edit_view(request, fault_id):
     fault = get_object_or_404(_fault_queryset(), pk=fault_id)
     if request.method == "POST":
@@ -215,6 +243,9 @@ def fault_status_update_view(request, fault_id):
     fault = get_object_or_404(_fault_queryset(), pk=fault_id)
     if request.method != "POST":
         return redirect("faults:detail", fault_id=fault.pk)
+    if fault.current_status == "Verified Closed":
+        messages.error(request, "Verified closed faults cannot be updated.")
+        return redirect("faults:detail", fault_id=fault.pk)
     if not _can_update_fault(request.user, fault):
         messages.error(request, "You do not have permission to update this fault.")
         return redirect("faults:detail", fault_id=fault.pk)
@@ -235,14 +266,19 @@ def fault_status_update_view(request, fault_id):
         messages.error(request, error_message)
         return redirect("faults:detail", fault_id=fault.pk)
 
-    if assigned_to.isdigit():
-        assignee = _assignable_users().filter(pk=int(assigned_to)).first()
-        if not assignee:
-            messages.error(request, "Faults can only be assigned to Test Engineer or Maintenance Engineer users.")
+    if _can_manage_fault_record(request.user):
+        if assigned_to.isdigit():
+            assignee = _assignable_users().filter(pk=int(assigned_to)).first()
+            if not assignee:
+                messages.error(request, "Faults can only be assigned to Test Engineer or Maintenance Engineer users.")
+                return redirect("faults:detail", fault_id=fault.pk)
+            fault.assigned_to = assignee
+        elif assigned_to == "":
+            fault.assigned_to = None
+
+        if new_status == "Assigned" and fault.assigned_to is None:
+            messages.error(request, "Assign an engineer before moving a fault to Assigned.")
             return redirect("faults:detail", fault_id=fault.pk)
-        fault.assigned_to = assignee
-    elif assigned_to == "":
-        fault.assigned_to = None
 
     if new_status == "Under Analysis":
         fault.analysis_findings = analysis_findings

@@ -1,8 +1,8 @@
 # Aircraft Test Fault Django
 
-Versi Django dari project Aircraft Test Fault Management System yang dipindahkan dari implementasi Java Servlet/JSP ke stack yang lebih sederhana untuk pengembangan lanjutan dan demo yang lebih stabil.
+Django version of the Aircraft Test Fault Management System, migrated from the Java Servlet/JSP implementation to a simpler stack for further development and a more stable demo.
 
-## Cara run
+## How to Run
 
 ```powershell
 cd "c:\Program Files\Collage\De'Wei\Aircraft_Test_Fault_Django"
@@ -14,34 +14,34 @@ python manage.py loaddata fixtures/demo_data.json
 python manage.py runserver
 ```
 
-Lalu buka `http://127.0.0.1:8000/accounts/login/`.
+Then open `http://127.0.0.1:8000/accounts/login/`.
 
-## Catatan
+## Notes
 
-- Project ini sekarang dikonfigurasi untuk PostgreSQL secara default.
-- Konfigurasi database dibaca dari environment variable:
+- This project is configured to use PostgreSQL by default.
+- Database configuration is read from these environment variables:
   `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_HOST`, `POSTGRES_PORT`
-- Untuk mengaktifkan AI via OpenRouter, set environment variable `OPENROUTER_API_KEY`. Jika tidak diatur, aplikasi memakai fallback lokal.
-- Asset CSS, JS, Bootstrap, Bootstrap Icons, Chart.js, dan Font Awesome disalin dari project Java.
-- Modul yang sudah functional: login, register, dashboard, fault list, create fault, fault detail, aircraft management, reports, user management, workflow status history, dan AI helper endpoint.
-- Fitur AI akan memakai fallback lokal bila `OPENROUTER_API_KEY` belum diatur.
-- Data demo 100 fault disimpan di `fixtures/demo_data.json`. Jalankan `python manage.py loaddata fixtures/demo_data.json` setelah `migrate` untuk mengisi database baru.
-- Bila memakai data demo dan belum tahu password login, set ulang password akun admin dengan `python manage.py changepassword admin`.
+- To enable AI through OpenRouter, set the `OPENROUTER_API_KEY` environment variable. If it is not configured, the application uses the local fallback.
+- CSS, JS, Bootstrap, Bootstrap Icons, Chart.js, and Font Awesome assets were copied from the Java project.
+- Functional modules: login, registration, dashboard, fault list, fault creation, fault detail, aircraft management, reports, user management, workflow status history, and AI helper endpoint.
+- The AI feature uses a local fallback when `OPENROUTER_API_KEY` is not configured.
+- The demo dataset with 100 faults is stored in `fixtures/demo_data.json`. Run `python manage.py loaddata fixtures/demo_data.json` after `migrate` to populate a new database.
+- If you use the demo data and do not know the login password, reset the admin account password with `python manage.py changepassword admin`.
 
-## Verifikasi
+## Verification
 
 ```powershell
 python manage.py test
 ```
 
-Semua test aplikasi inti saat ini sudah disiapkan untuk modul `accounts`, `aircraft`, `faults`, `reports`, dan `ai_tools`.
+All core application tests are currently prepared for the `accounts`, `aircraft`, `faults`, `reports`, and `ai_tools` modules.
 
-## Migrasi data dari SQLite lama
+## Migrating Data from an Old SQLite Database
 
-Kalau sebelumnya project ini memakai `db.sqlite3` dan sekarang sudah pindah ke PostgreSQL, Anda bisa memindahkan data lama dengan command berikut:
+If this project previously used `db.sqlite3` and has now moved to PostgreSQL, you can migrate the old data with this command:
 
 ```powershell
 python manage.py import_sqlite_data --sqlite-path db.sqlite3 --flush
 ```
 
-Gunakan `--flush` bila database PostgreSQL target sudah punya data dan Anda ingin menggantinya dengan isi dari SQLite.
+Use `--flush` when the target PostgreSQL database already has data and you want to replace it with the SQLite contents.

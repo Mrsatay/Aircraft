@@ -75,6 +75,11 @@
                 {{ form.subsystem }}
                 {% if form.subsystem.errors %}<div class="text-danger small mt-1">{{ form.subsystem.errors|striptags }}</div>{% endif %}
             </div>
+            <div class="col-md-4 d-none" id="subsystem-other-wrapper">
+                <label class="form-label" for="{{ form.subsystem_other.id_for_label }}">Other Subsystem *</label>
+                {{ form.subsystem_other }}
+                {% if form.subsystem_other.errors %}<div class="text-danger small mt-1">{{ form.subsystem_other.errors|striptags }}</div>{% endif %}
+            </div>
             <div class="col-md-4">
                 <label class="form-label" for="{{ form.severity.id_for_label }}">Severity *</label>
                 {{ form.severity }}
@@ -84,6 +89,11 @@
                 <label class="form-label" for="{{ form.component_affected.id_for_label }}">Component Affected</label>
                 {{ form.component_affected }}
                 {% if form.component_affected.errors %}<div class="text-danger small mt-1">{{ form.component_affected.errors|striptags }}</div>{% endif %}
+            </div>
+            <div class="col-md-4 d-none" id="component-other-wrapper">
+                <label class="form-label" for="{{ form.component_affected_other.id_for_label }}">Other Component *</label>
+                {{ form.component_affected_other }}
+                {% if form.component_affected_other.errors %}<div class="text-danger small mt-1">{{ form.component_affected_other.errors|striptags }}</div>{% endif %}
             </div>
 
             <div class="col-12">
@@ -110,16 +120,36 @@
                 <h6 class="text-primary"><i class="bi bi-person-check me-2"></i>Assignment</h6>
                 <hr>
             </div>
-            <div class="col-md-6">
-                <label class="form-label" for="{{ form.assigned_to.id_for_label }}">Assign To</label>
-                {{ form.assigned_to }}
-                {% if form.assigned_to.errors %}<div class="text-danger small mt-1">{{ form.assigned_to.errors|striptags }}</div>{% endif %}
-            </div>
-            <div class="col-md-6">
-                <label class="form-label" for="{{ form.current_status.id_for_label }}">Current Status</label>
-                {{ form.current_status }}
-                {% if form.current_status.errors %}<div class="text-danger small mt-1">{{ form.current_status.errors|striptags }}</div>{% endif %}
-            </div>
+            {% if fault %}
+                <div class="col-md-6">
+                    <label class="form-label" for="{{ form.assigned_to.id_for_label }}">Assign To</label>
+                    {{ form.assigned_to }}
+                    {% if form.assigned_to.errors %}<div class="text-danger small mt-1">{{ form.assigned_to.errors|striptags }}</div>{% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="{{ form.current_status.id_for_label }}">Current Status</label>
+                    {{ form.current_status }}
+                    {% if form.current_status.errors %}<div class="text-danger small mt-1">{{ form.current_status.errors|striptags }}</div>{% endif %}
+                </div>
+            {% elif can_assign_on_create %}
+                <div class="col-md-6">
+                    <label class="form-label" for="{{ form.assigned_to.id_for_label }}">Assign To</label>
+                    {{ form.assigned_to }}
+                    <div class="form-text">New fault reports start with status New.</div>
+                    {% if form.assigned_to.errors %}<div class="text-danger small mt-1">{{ form.assigned_to.errors|striptags }}</div>{% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Current Status</label>
+                    <input type="text" class="form-control" value="New" readonly>
+                    <div class="form-text">Status changes are handled after the fault is created.</div>
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <div class="alert alert-light border mb-0">
+                        New fault reports start as <strong>New</strong> and <strong>Unassigned</strong>. An Admin or Test Manager can assign an engineer after review.
+                    </div>
+                </div>
+            {% endif %}
 
             {% if fault %}
             <div class="col-12">
@@ -174,6 +204,149 @@
 <script>
 const severityField = document.getElementById('id_severity');
 const severityScoreField = document.getElementById('id_severity_score');
+const subsystemField = document.getElementById('id_subsystem');
+const subsystemOtherWrapper = document.getElementById('subsystem-other-wrapper');
+const subsystemOtherField = document.getElementById('id_subsystem_other');
+const componentField = document.getElementById('id_component_affected');
+const componentOtherWrapper = document.getElementById('component-other-wrapper');
+const componentOtherField = document.getElementById('id_component_affected_other');
+
+const componentOptionsBySubsystem = {
+    Engine: [
+        'Engine Control Unit',
+        'Fuel Injector',
+        'Oil Pump',
+        'Starter Motor',
+        'Thrust Reverser',
+    ],
+    Electrical: [
+        'Generator Control Unit',
+        'Battery Bus',
+        'Wiring Harness',
+        'Circuit Breaker',
+        'Power Distribution Panel',
+    ],
+    Avionics: [
+        'Flight Management Computer',
+        'FMS CDU',
+        'Data Concentrator Unit',
+        'PFD Display Unit',
+        'IRS Unit',
+    ],
+    Hydraulics: [
+        'Hydraulic Pump A',
+        'Hydraulic Pump B',
+        'Pressure Manifold',
+        'Actuator Return Line',
+        'Reservoir',
+    ],
+    'Landing Gear': [
+        'Main Landing Gear',
+        'Nose Landing Gear',
+        'Landing Gear Actuator',
+        'Brake Assembly',
+        'Wheel Speed Sensor',
+    ],
+    'Flight Controls': [
+        'Aileron Actuator',
+        'Elevator Servo',
+        'Spoiler Control Module',
+        'Rudder Actuator',
+        'Flap Control Unit',
+    ],
+    Fuel: [
+        'Boost Pump',
+        'Crossfeed Valve',
+        'Fuel Quantity Sensor',
+        'Fuel Quantity Indication System',
+        'Fuel Control Valve',
+    ],
+    'Environmental Control': [
+        'Pack Controller',
+        'Cabin Pressure Valve',
+        'Temperature Sensor',
+        'Air Cycle Machine',
+        'Bleed Air Valve',
+    ],
+    Navigation: [
+        'GPS Receiver',
+        'VOR Antenna',
+        'IRS Unit',
+        'Navigation Computer',
+        'Radio Altimeter',
+    ],
+    Communication: [
+        'VHF Radio',
+        'HF Radio',
+        'Audio Control Panel',
+        'Transponder',
+        'Antenna Coupler',
+    ],
+};
+
+function setComponentOptions(selectedValue = '') {
+    if (!componentField) return;
+    const subsystem = getSelectedSubsystem();
+    const components = componentOptionsBySubsystem[subsystem] || [];
+    componentField.innerHTML = '';
+
+    componentField.add(new Option('Select component', ''));
+    components.forEach((component) => {
+        componentField.add(new Option(component, component));
+    });
+    componentField.add(new Option('Other', 'Other'));
+
+    if (selectedValue && components.includes(selectedValue)) {
+        componentField.value = selectedValue;
+    } else if (selectedValue === 'Other') {
+        componentField.value = 'Other';
+    } else if (selectedValue) {
+        componentField.value = 'Other';
+    } else {
+        componentField.value = '';
+    }
+}
+
+function syncComponentOtherField() {
+    const usesOther = componentField?.value === 'Other';
+    componentOtherWrapper?.classList.toggle('d-none', !usesOther);
+    if (componentOtherField) {
+        componentOtherField.required = usesOther;
+        if (!usesOther) componentOtherField.value = '';
+    }
+}
+
+function getSelectedSubsystem() {
+    if (subsystemField?.value === 'Other') {
+        return subsystemOtherField?.value || '';
+    }
+    return subsystemField?.value || '';
+}
+
+function syncSubsystemOtherField() {
+    const usesOther = subsystemField?.value === 'Other';
+    subsystemOtherWrapper?.classList.toggle('d-none', !usesOther);
+    if (subsystemOtherField) {
+        subsystemOtherField.required = usesOther;
+        if (!usesOther) subsystemOtherField.value = '';
+    }
+}
+
+syncSubsystemOtherField();
+setComponentOptions(componentField?.dataset.initialValue || componentField?.value || '');
+syncComponentOtherField();
+
+subsystemField?.addEventListener('change', () => {
+    syncSubsystemOtherField();
+    setComponentOptions('');
+    syncComponentOtherField();
+});
+subsystemOtherField?.addEventListener('input', () => {
+    setComponentOptions(componentField?.value || '');
+    syncComponentOtherField();
+});
+componentField?.addEventListener('change', syncComponentOtherField);
+
 severityField?.addEventListener('change', () => {
     if (!severityScoreField || severityScoreField.value) return;
     if (severityField.value === 'Critical') severityScoreField.value = '9';
@@ -190,7 +363,6 @@ document.getElementById('generate-description-btn')?.addEventListener('click', a
     const aircraftSelect = document.getElementById('id_aircraft');
     const severitySelect = document.getElementById('id_severity');
     const phaseSelect = document.getElementById('id_flight_phase');
-    const subsystemInput = document.getElementById('id_subsystem');
     const descriptionInput = document.getElementById('id_description');
 
     warning.textContent = '';
@@ -210,7 +382,7 @@ document.getElementById('generate-description-btn')?.addEventListener('click', a
             },
             body: JSON.stringify({
                 aircraft: aircraftSelect?.selectedOptions?.[0]?.text || '',
-                subsystem: subsystemInput?.value || '',
+                subsystem: getSelectedSubsystem(),
                 severity: severitySelect?.value || '',
                 flightPhase: phaseSelect?.value || '',
             }),
